@@ -17,21 +17,18 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <Box
         sx={{
-          height: "100vh",
+          height: { xs: '80vh', sm: ' 90vh', md: ' 80vh', lg: ' 70vh', xl: ' 100vh' },
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          // backgroundColor: "rgba(255,255,225,1)",
-          bgcolor:'white',
+          bgcolor: 'white',
           color: "black",
           px: { xs: 2, md: 5 },
           mb: 5,
-          // backgroundImage: `url('/image/1741781688963.jpg')`,
-          //         backgroundSize: "cover",
-          //         backgroundPosition: "center",
+          mt: { xs: 5, sm: 5, md: 5 }
         }}
       >
-        <Container maxWidth="lg" sx={{ mt: { xs: 1, sm: 3, md: 0 } }}>
+        <Container sx={{ mt: { xs: 1, sm: 3, md: 0 } }}>
           <Grid
             container
             spacing={4}
@@ -109,7 +106,7 @@ const Home: React.FC = () => {
                 <IconButton
                   href="https://github.com/your-username"
                   target="_blank"
-                  sx={{"& svg": { fontSize: { xs: "1.5rem", sm: "2rem" } } }}
+                  sx={{ "& svg": { fontSize: { xs: "1.5rem", sm: "2rem" } } }}
                 >
                   <FaGithub color="black" />
                 </IconButton>
@@ -132,20 +129,7 @@ const Home: React.FC = () => {
               justifyContent="center"
               sx={{ position: "relative", width: "100%", height: "auto" }}
             >
-              {/* Background Image
-              <Box
-                sx={{
-                  position: "absolute",
-                  width: { xs: 200, sm: 300, md: 400, lg: 500, xl: 550 },
-                  height: { xs: 200, sm: 300, md: 400, lg: 500, xl: 550 },
-                  backgroundImage: `url('/image/28564296_1765.jpg')`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  borderRadius: "50%",
-                  top: "36.5%",
-                  zIndex: -1,
-                }}
-              /> */}
+
               {/* Avatar */}
               <Avatar
                 src="/image/1741623665154.jpg"
@@ -154,8 +138,12 @@ const Home: React.FC = () => {
                   width: { xs: 150, sm: 180, md: 220, lg: 250, xl: 280 },
                   height: { xs: 150, sm: 180, md: 220, lg: 250, xl: 280 },
                   boxShadow: 3,
+                  position: "relative",
+                  // borderRadius: "50%",
+
                 }}
               />
+              {/* </Box> */}
             </Grid>
           </Grid>
         </Container>
