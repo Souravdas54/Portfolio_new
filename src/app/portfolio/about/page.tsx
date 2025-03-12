@@ -3,7 +3,7 @@
 import React from "react";
 import { Box, Typography, Grid, Avatar, Chip, Container } from "@mui/material";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact,} from "react-icons/fa";
-import { SiRedux, SiNextdotjs,  SiTypescript } from "react-icons/si";
+import { SiRedux, SiNextdotjs,  SiTypescript, SiMui } from "react-icons/si";
 
 const skills = [
   { name: "HTML", icon: <FaHtml5 color="#E34F26" size={24} /> },
@@ -12,14 +12,11 @@ const skills = [
   { name: "React.js", icon: <FaReact color="#61DAFB" size={24} /> },
   { name: "React-Redux", icon: <SiRedux color="#764ABC" size={24} /> },
   { name: "Next.js", icon: <SiNextdotjs color="white" size={24} /> },
-  // { name: "Material UI", icon: <SiMui color="#007FFF" size={24} /> },
+  { name: "Material UI", icon: <SiMui color="#007FFF" size={24} /> },
   { name: "TypeScript", icon: <SiTypescript color="#3178C6" size={24} /> }
 ];
 
-// const skills = [
-//   "HTML", "CSS", "JavaScript", "React.js", "React-Redux", "Next.js",
-//   "Material UI", "TypeScript"
-// ];
+
 
 const About: React.FC = () => {
   const a = " I'm";
@@ -37,9 +34,9 @@ const About: React.FC = () => {
           {/* Left Side: Profile Image */}
           <Grid item xs={12} md={4} sx={{ display: "flex", justifyContent: "center" }}>
             <Avatar
-              src="/image/sd.jpg" // Change to your actual image
+              src="/image/1741623665154.jpg" // Change to your actual image
               alt="Sourav"
-              sx={{ width: 180, height: 180, boxShadow: 3 }}
+              sx={{ width: 200, height: 200, boxShadow: 3 }}
             />
           </Grid>
 

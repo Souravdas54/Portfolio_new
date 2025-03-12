@@ -21,13 +21,17 @@ const Home: React.FC = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "white",
+          // backgroundColor: "rgba(255,255,225,1)",
+          bgcolor:'white',
           color: "black",
           px: { xs: 2, md: 5 },
           mb: 5,
+          // backgroundImage: `url('/image/1741781688963.jpg')`,
+          //         backgroundSize: "cover",
+          //         backgroundPosition: "center",
         }}
       >
-        <Container maxWidth="lg" sx={{ mt: { xs: 10, sm: 8, md: 0 } }}>
+        <Container maxWidth="lg" sx={{ mt: { xs: 1, sm: 3, md: 0 } }}>
           <Grid
             container
             spacing={4}
@@ -105,7 +109,7 @@ const Home: React.FC = () => {
                 <IconButton
                   href="https://github.com/your-username"
                   target="_blank"
-                  sx={{ "& svg": { fontSize: { xs: "1.5rem", sm: "2rem" } } }}
+                  sx={{"& svg": { fontSize: { xs: "1.5rem", sm: "2rem" } } }}
                 >
                   <FaGithub color="black" />
                 </IconButton>
@@ -144,7 +148,7 @@ const Home: React.FC = () => {
               /> */}
               {/* Avatar */}
               <Avatar
-                src="/image/sd.jpg"
+                src="/image/1741623665154.jpg"
                 alt="Sourav"
                 sx={{
                   width: { xs: 150, sm: 180, md: 220, lg: 250, xl: 280 },

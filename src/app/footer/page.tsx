@@ -4,6 +4,7 @@ import React from "react";
 import { Box, Container, Grid, Typography, IconButton } from "@mui/material";
 import { Email, Phone } from "@mui/icons-material";
 import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
+import Link from "next/link";
 
 const Footer: React.FC = () => {
     const a = " I'm";
@@ -27,18 +28,26 @@ const Footer: React.FC = () => {
                             Quick Links
                         </Typography>
                         <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
-                            <Typography variant="body2" sx={{ cursor: "pointer", mb: 1 }}>
-                                Home
-                            </Typography>
-                            <Typography variant="body2" sx={{ cursor: "pointer", mb: 1 }}>
-                                About
-                            </Typography>
-                            <Typography variant="body2" sx={{ cursor: "pointer", mb: 1 }}>
-                                Projects
-                            </Typography>
-                            <Typography variant="body2" sx={{ cursor: "pointer", mb: 1 }}>
-                                Contact
-                            </Typography>
+                        <Link href="/" passHref>
+            <Typography variant="body2" sx={{ cursor: "pointer", mb: 1, color: "rgba(225,225,225,0.8)", "&:hover": { color: "white" } }}>
+                Home
+            </Typography>
+        </Link>
+        <Link href="/portfolio/about" passHref>
+            <Typography variant="body2" sx={{ cursor: "pointer", mb: 1, color: "rgba(225,225,225,0.8)", "&:hover": { color: "white" } }}>
+                About
+            </Typography>
+        </Link>
+        <Link href="/portfolio/project" passHref>
+            <Typography variant="body2" sx={{ cursor: "pointer", mb: 1, color: "rgba(225,225,225,0.8)", "&:hover": { color: "white" } }}>
+                Projects
+            </Typography>
+        </Link>
+        <Link href="/portfolio/contact" passHref>
+            <Typography variant="body2" sx={{ cursor: "pointer", mb: 1, color: "rgba(225,225,225,0.8)", "&:hover": { color: "white" } }}>
+                Contact
+            </Typography>
+        </Link>
                         </Box>
                     </Grid>
 
