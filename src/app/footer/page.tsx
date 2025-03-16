@@ -6,8 +6,9 @@ import { Email, Phone } from "@mui/icons-material";
 import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
 import Link from "next/link";
 
+// &apos -> ( ' ) 
+
 const Footer: React.FC = () => {
-    const a = " I'm";
     return (
         <Box sx={{ bgcolor: "#333", color: "white", py: 5, mt: 0 }}>
             <Container>
@@ -18,7 +19,7 @@ const Footer: React.FC = () => {
                             About Me
                         </Typography>
                         <Typography variant="body2" sx={{ mt: 1 }}>
-                            {a} a passionate front-end developer specializing in React, Next.js, and MUI. Building user-friendly web experiences.
+                            I&apos;m a passionate front-end developer specializing in React, Next.js, and MUI. Building user-friendly web experiences.
                         </Typography>
                     </Grid>
 
