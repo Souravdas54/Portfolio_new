@@ -46,16 +46,19 @@ const About: React.FC = () => {
 
         {/* Open Graph (OG) - For social sharing */}
         <meta property="og:type" content="profile" />
-        <meta property="og:title" content="About - Front-End Developer" />
+        <meta property="og:title" content="About - Sourav Das | Front-End Developer" />
         <meta property="og:description" content="Explore Sourav Das's journey as a Front-End Developer, specializing in React.js, Next.js, and JavaScript." />
         <meta property="og:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
         <meta property="og:url" content="https://portfolio-new-five-eosin.vercel.app/" />
 
         {/* Twitter Cards */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="About - Front-End Developer" />
-        <meta name="twitter:description" content="Discover Sourav Das's skills, experience, and web development journey." />
-        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
+        <meta property="twitter:domain" content="portfolio-new-five-eosin.vercel.app" />
+        <meta property="twitter:url" content="https://portfolio-new-five-eosin.vercel.app/" />
+        <meta name="twitter:title" content="Sourav Das - Front-End Developer Portfolio" />
+        <meta name="twitter:description" content="Explore Sourav Das' web development projects, featuring React.js, Next.js, and JavaScript skills." />
+        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/1741623665154.jpg" />
+
 
         {/* Additional SEO Improvements */}
         <meta name="robots" content="index, follow" />

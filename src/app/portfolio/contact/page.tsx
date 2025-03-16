@@ -73,9 +73,12 @@ const Contact: React.FC = () => {
 
         {/* Twitter Cards */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Contact - Sourav Das | Front-End Developer" />
-        <meta name="twitter:description" content="Reach out to Sourav Das for web development services, project collaborations, or technical inquiries." />
-        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
+        <meta property="twitter:domain" content="portfolio-new-five-eosin.vercel.app" />
+        <meta property="twitter:url" content="https://portfolio-new-five-eosin.vercel.app/" />
+        <meta name="twitter:title" content="Sourav Das - Front-End Developer Portfolio" />
+        <meta name="twitter:description" content="Explore Sourav Das' web development projects, featuring React.js, Next.js, and JavaScript skills." />
+        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/1741623665154.jpg" />
+
 
         {/* Local SEO - For business visibility */}
         <meta name="geo.region" content="IN-WB" />
