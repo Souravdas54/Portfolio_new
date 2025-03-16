@@ -11,26 +11,27 @@ import Head from "next/head";
 
 const Home: React.FC = () => {
 
-  const schemaData = {
+   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Sourav Das",
     "jobTitle": "Front-end Developer",
-    "image": "/image/1741623665154.jpg",
+    "image": "https://sdportfolio.com/image/1741623665154.jpg",
     "url": "https://sdportfolio.com",
     "sameAs": [
-      "https://www.linkedin.com/in/yourprofile",
-      "https://github.com/yourgithub",
-      "https://twitter.com/yourtwitter"
+      "https://www.linkedin.com/in/sourav-das",
+      "https://github.com/sourav-das",
+      "https://twitter.com/sourav_das"
     ],
     "worksFor": {
       "@type": "Organization",
-      "name": "Webskitters Academy"
+      "name": "Webskitters Academy",
+      "url": "https://www.webskittersacademy.in/"
     },
     "knowsAbout": ["JavaScript", "React", "Next.js", "TypeScript", "MUI"],
-    "description": "I'm a Front-End Developer specializing in building responsive and engaging web applications."
+    "description": "I'm a passionate Front-End Developer specializing in building fast, responsive, and engaging web applications using modern technologies like React, Next.js, and TypeScript."
   };
-
+  
   return (
     <>
       <Head>
@@ -59,6 +60,7 @@ const Home: React.FC = () => {
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Sourav Das" />
         <link rel="canonical" href="https://portfolio-new-five-eosin.vercel.app/" />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
