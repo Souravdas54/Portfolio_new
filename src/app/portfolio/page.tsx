@@ -34,6 +34,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Head>
+      <title>Portfolio - Sourav Das | Front-End Developer</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Portfolio of Sourav Das showcasing web development skills and projects using React.js, Next.js, and JavaScript." />

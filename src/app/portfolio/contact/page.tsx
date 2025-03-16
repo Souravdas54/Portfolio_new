@@ -59,6 +59,7 @@ const Contact: React.FC = () => {
   return (
     <>
       <Head>
+      <title>Contact - Sourav Das | Front-End Developer</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Get in touch with Sourav Das. Contact for web development projects, collaboration, and queries." />
