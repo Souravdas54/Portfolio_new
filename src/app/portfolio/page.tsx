@@ -186,19 +186,20 @@ const Home: React.FC = () => {
               <Grid
                 item
                 xs={12}
-                md={6}
+                md={5}
                 display="flex"
                 justifyContent="center"
                 sx={{ position: "relative", width: "100%", height: "auto" }}
               >
                 <Box sx={{
 
-                  // backgroundImage: "url('/image/6402688_3274408.jpg')",
-                  // backgroundSize:'cover',
-                  // backgroundPosition:"center",
-                  // width: "450px",
-                  // height: "100px",
-                  // position: "relative",
+                  // backgroundImage: "url('/image/255691291_2b6e5d83-58e5-4d74-99cd-eff31ed9c09b.jpg')",
+                  // backgroundSize: 'cover',
+                  // backgroundPosition: "center",
+                  // width: "330px",
+                  // height: "330px",
+                  position: "relative",
+
 
                 }}>
                   {/* Avatar */}
@@ -206,13 +207,12 @@ const Home: React.FC = () => {
                     src="/image/1741623665154.jpg"
                     alt="Sourav"
                     sx={{
-                      width: { xs: 150, sm: 180, md: 220, lg: 350, xl: 280 },
-                      height: { xs: 150, sm: 180, md: 220, lg: 350, xl: 280 },
+                      width: { xs: 200, sm: 230, md: 250, lg: 350, xl: 280 },
+                      height: { xs: 200, sm: 230, md: 250, lg: 350, xl: 280 },
                       boxShadow: 3,
                       position: "relative",
-                      // borderRadius: "50%",
-                      // ml:15,
-                      // mt:15,
+                      // ml: 4.5,
+                      // mt: 4.5,
 
                     }}
                   />
