@@ -68,14 +68,14 @@ const Contact: React.FC = () => {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Contact - Sourav Das | Front-End Developer" />
         <meta property="og:description" content="Contact Sourav Das for web development services, project collaborations, or technical inquiries." />
-        <meta property="og:image" content="/image/1741623665154.jpg" />
+        <meta property="og:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
         <meta property="og:url" content="https://portfolio-new-five-eosin.vercel.app/" />
 
         {/* Twitter Cards */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Contact - Sourav Das | Front-End Developer" />
         <meta name="twitter:description" content="Reach out to Sourav Das for web development services, project collaborations, or technical inquiries." />
-        <meta name="twitter:image" content="/image/1741623665154.jpg" />
+        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
 
         {/* Local SEO - For business visibility */}
         <meta name="geo.region" content="IN-WB" />

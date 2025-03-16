@@ -48,14 +48,14 @@ const About: React.FC = () => {
         <meta property="og:type" content="profile" />
         <meta property="og:title" content="About - Sourav Das | Front-End Developer" />
         <meta property="og:description" content="Explore Sourav Das's journey as a Front-End Developer, specializing in React.js, Next.js, and JavaScript." />
-        <meta property="og:image" content="/image/1741623665154.jpg" />
+        <meta property="og:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
         <meta property="og:url" content="https://portfolio-new-five-eosin.vercel.app/" />
 
         {/* Twitter Cards */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About - Sourav Das | Front-End Developer" />
         <meta name="twitter:description" content="Discover Sourav Das's skills, experience, and web development journey." />
-        <meta name="twitter:image" content="/image/1741623665154.jpg" />
+        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
 
         {/* Additional SEO Improvements */}
         <meta name="robots" content="index, follow" />

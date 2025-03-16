@@ -78,14 +78,14 @@ const Projects: React.FC = () => {
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Projects - Sourav Das | Front-End Developer" />
   <meta property="og:description" content="Discover Sourav Das' projects showcasing React.js, Next.js, and web development expertise." />
-  <meta property="og:image" content="/image/outdoor.png" />
+  <meta property="og:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
   <meta property="og:url" content="https://portfolio-new-five-eosin.vercel.app/" />
 
   {/* Twitter Cards */}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Projects - Sourav Das | Front-End Developer" />
   <meta name="twitter:description" content="Explore projects by Sourav Das featuring React.js, Next.js, and creative web development solutions." />
-  <meta name="twitter:image" content="/image/outdoor.png" />
+  <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
 
   {/* Additional SEO Improvements */}
   <meta name="robots" content="index, follow" />
