@@ -41,7 +41,7 @@ const Home: React.FC = () => {
 
         {/* Open Graph (OG) - For social sharing */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Frontend Developer Portfolio" />
+        <meta property="og:title" content="Portfolio - Frontend Developer Portfolio" />
         <meta property="og:description" content="Explore my portfolio showcasing React.js, Next.js, and JavaScript projects." />
         <meta property="og:image" content="/image/1741623665154.jpg" />
         <meta property="og:url" content="https://portfolio-new-five-eosin.vercel.app/" />
@@ -49,7 +49,7 @@ const Home: React.FC = () => {
 
         {/* Twitter Cards */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Frontend Developer Portfolio" />
+        <meta name="twitter:title" content="Portfolio - Frontend Developer Portfolio" />
         <meta name="twitter:description" content="Explore my portfolio showcasing React.js, Next.js, and JavaScript projects." />
         <meta name="twitter:image" content="/image/1741623665154.jpg" />
 
