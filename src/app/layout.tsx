@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Sourav Das Portfolio",
     images: [
       {
-        url: "https://portfolio-new-five-eosin.vercel.app/image/1741623665154.jpg",
+        url: "https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png",
         width: 1200,
         height: 630,
         alt: "Portfolio",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Portfolio",
     description: "Explore Sourav Das' portfolio showcasing web development skills in React.js, Next.js, and JavaScript.",
-    images: ["https://portfolio-new-five-eosin.vercel.app/image/1741623665154.jpg"],
+    images: ["https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png"],
   },
   metadataBase: new URL("https://portfolio-new-five-eosin.vercel.app"),
   robots: "index, follow",
