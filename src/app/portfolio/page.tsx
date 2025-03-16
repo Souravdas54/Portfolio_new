@@ -11,26 +11,31 @@ import Head from "next/head";
 
 const Home: React.FC = () => {
 
-  //  const schemaData = {
-  //   "@context": "https://schema.org",
-  //   "@type": "Person",
-  //   "name": "Sourav Das",
-  //   "jobTitle": "Front-end Developer",
-  //   "image": "https://sdportfolio.com/image/1741623665154.jpg",
-  //   "url": "https://sdportfolio.com",
-  //   "sameAs": [
-  //     "https://www.linkedin.com/in/sourav-das",
-  //     "https://github.com/sourav-das",
-  //     "https://twitter.com/sourav_das"
-  //   ],
-  //   "worksFor": {
-  //     "@type": "Organization",
-  //     "name": "Webskitters Academy",
-  //     "url": "https://www.webskittersacademy.in/"
-  //   },
-  //   "knowsAbout": ["JavaScript", "React", "Next.js", "TypeScript", "MUI"],
-  //   "description": "I'm a passionate Front-End Developer specializing in building fast, responsive, and engaging web applications using modern technologies like React, Next.js, and TypeScript."
-  // };
+ function addSchemadata() {
+    return{
+      __html:`{ 
+     "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sourav Das",
+    "jobTitle": "Front-end Developer",
+    "image": "https://sdportfolio.com/image/1741623665154.jpg",
+    "url": "https://sdportfolio.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/sourav-das",
+      "https://github.com/sourav-das",
+      "https://twitter.com/sourav_das"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Webskitters Academy",
+      "url": "https://www.webskittersacademy.in/"
+    },
+    "knowsAbout": ["JavaScript", "React", "Next.js", "TypeScript", "MUI"],
+    "description": "I'm a passionate Front-End Developer specializing in building fast, responsive, and engaging web applications using modern technologies like React, Next.js, and TypeScript."
+      }`
+    }
+  }
+
   
   return (
     <>
@@ -61,35 +66,11 @@ const Home: React.FC = () => {
         <meta name="author" content="Sourav Das" />
         <link rel="canonical" href="https://portfolio-new-five-eosin.vercel.app/" />
         
-          <script
+           <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Sourav Das",
-              "jobTitle": "Web Development Student",
-              "alumniOf": {
-                "@type": "EducationalOrganization",
-                "name": "Webskitters Academy",
-                "url": "https://www.webskittersacademy.in/"
-              },
-              "educationalCredentialAwarded": "Diploma in Electrical Engineering",
-              "url": "https://your-portfolio.com",
-              "email": "mailto:example@gmail.com",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Kuntighat, Hooghly",
-                "addressLocality": "West Bengal",
-                "postalCode": "712513",
-                "addressCountry": "IN"
-              },
-              "sameAs": [
-                "https://www.linkedin.com/in/sourav-das",
-                "https://github.com/sourav-das"
-              ]
-            })
-          }}
+          dangerouslySetInnerHTML={ addSchemadata()
+            // { __html: JSON.stringify() }
+          }
         />
          
       </Head>
