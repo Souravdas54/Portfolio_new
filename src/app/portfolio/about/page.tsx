@@ -38,20 +38,7 @@ const skills = [
 
 
 const About: React.FC = () => {
-  // const aboutSchema = {
-  //   "@context": "https://schema.org",
-  //   "@type": "Person",
-  //   "name": "Sourav Das",
-  //   "jobTitle": "Front-End Developer",
-  //   "description": "I'm a passionate Front-End Developer specializing in building interactive and user-friendly web applications.",
-  //   "url": "https://your-portfolio.com/about",
-  //   "image": "/image/1741623665154.jpg",
-  //   "sameAs": [
-  //     "https://www.linkedin.com/in/yourprofile",
-  //     "https://github.com/yourgithub",
-  //     "https://twitter.com/yourtwitter"
-  //   ]
-  // };
+ 
 
   return (
     <>
@@ -62,20 +49,11 @@ const About: React.FC = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdAbout) }}
       />
       <Head>
-      
-
-        {/* Additional SEO Improvements */}
-        {/* <meta name="robots" content="index, follow" />
-        <meta name="author" content="Sourav Das" />
-        <link rel="canonical" href="https://portfolio-new-five-eosin.vercel.app/" /> */}
         <meta
           name="description"
           content="Learn more about Sourav Das, a passionate Front-End Developer skilled in React.js, Next.js, and modern web technologies."
         />
-        {/* <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
-        /> */}
+       
 
       </Head>
 

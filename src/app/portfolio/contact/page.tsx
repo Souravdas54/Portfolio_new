@@ -22,16 +22,7 @@ const jsonLdContact: WithContext<WebPage> = {
 };
 
 const Contact: React.FC = () => {
-  // const contactSchema = {
-  //   "@context": "https://schema.org",
-  //   "@type": "ContactPoint",
-  //   "telephone": "+91 12365 47890",
-  //   "contactType": "Customer Service",
-  //   "areaServed": "IN",
-  //   "availableLanguage": "English"
-  // };
-
-
+ 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -84,37 +75,7 @@ const Contact: React.FC = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Get in touch with Sourav Das. Contact for web development projects, collaboration, and queries." />
 
-        {/* Open Graph (OG) - For social sharing */}
-        {/* <meta property="og:type" content="website" />
-        <meta property="og:title" content="Contact - Sourav Das | Front-End Developer" />
-        <meta property="og:description" content="Contact Sourav Das for web development services, project collaborations, or technical inquiries." />
-        <meta property="og:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
-        <meta property="og:url" content="https://portfolio-new-five-eosin.vercel.app/" /> */}
-
-        {/* Twitter Cards */}
-        {/* <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="portfolio-new-five-eosin.vercel.app" />
-        <meta property="twitter:url" content="https://portfolio-new-five-eosin.vercel.app/" />
-        <meta name="twitter:title" content="Sourav Das - Front-End Developer Portfolio" />
-        <meta name="twitter:description" content="Explore Sourav Das' web development projects, featuring React.js, Next.js, and JavaScript skills." />
-        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/1741623665154.jpg" /> */}
-
-
-        {/* Local SEO - For business visibility */}
-        {/* <meta name="geo.region" content="IN-WB" />
-        <meta name="geo.placename" content="Kolkata, West Bengal, India" />
-        <meta name="geo.position" content="22.5726;88.3639" />
-        <meta name="ICBM" content="22.5726, 88.3639" /> */}
-
-        {/* Additional SEO Improvements */}
-        {/* <meta name="robots" content="index, follow" />
-        <meta name="author" content="Sourav Das" />
-        <link rel="canonical" href="https://portfolio-new-five-eosin.vercel.app/" /> */}
-
-        {/* <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
-        /> */}
+       
       </Head>
 
 

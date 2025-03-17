@@ -61,25 +61,6 @@ const project = [
 
 const Projects: React.FC = () => {
 
-  // const projectSchema = {
-  //   "@context": "https://schema.org",
-  //   "@type": "ItemList",
-  //   "name": "Sourav's Projects",
-  //   "itemListElement": [
-  //     {
-  //       "@type": "CreativeWork",
-  //       "name": "Portfolio",
-  //       "description": "A collection of stunning landscape photographs captured across the globe.",
-  //       "url": "https://portfolio-new-five-eosin.vercel.app/"
-  //     },
-  //     {
-  //       "@type": "CreativeWork",
-  //       "name": "Outdoor Adventure Website",
-  //       "description": "Experience the thrill of high-altitude trekking with our guided tours.",
-  //       "url": "https://outdoor-adventure-five.vercel.app/"
-  //     }
-  //   ]
-  // };
 
   return (
     <>
@@ -94,31 +75,7 @@ const Projects: React.FC = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Check out Sourav Das' web development projects, including portfolios, e-commerce sites, and adventure platforms." />
 
-        {/* Open Graph (OG) - For social sharing */}
-        {/* <meta property="og:type" content="website" />
-        <meta property="og:title" content="Projects - Sourav Das | Front-End Developer" />
-        <meta property="og:description" content="Discover Sourav Das' projects showcasing React.js, Next.js, and web development expertise." />
-        <meta property="og:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
-        <meta property="og:url" content="https://portfolio-new-five-eosin.vercel.app/" /> */}
-
-        {/* Twitter Cards */}
-        {/* <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="portfolio-new-five-eosin.vercel.app" />
-        <meta property="twitter:url" content="https://portfolio-new-five-eosin.vercel.app/" />
-        <meta name="twitter:title" content="Sourav Das - Front-End Developer Portfolio" />
-        <meta name="twitter:description" content="Explore Sourav Das' web development projects, featuring React.js, Next.js, and JavaScript skills." />
-        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/1741623665154.jpg" /> */}
-
-
-        {/* Additional SEO Improvements */}
-        {/* <meta name="robots" content="index, follow" />
-        <meta name="author" content="Sourav Das" />
-        <link rel="canonical" href="https://portfolio-new-five-eosin.vercel.app/" /> */}
-
-        {/* <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
-        /> */}
+       
       </Head>
 
 
