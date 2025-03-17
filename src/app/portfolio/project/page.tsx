@@ -8,7 +8,7 @@ import { WebPage, WithContext } from "schema-dts";
 import Script from "next/script";
 
 
-const jsonLdProject: WithContext<WebPage> = {
+const jsonLdProjects: WithContext<WebPage> = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "Sourav Das Portfolio",
@@ -65,9 +65,9 @@ const Projects: React.FC = () => {
   return (
     <>
     <Script
-            id="website-schema"
+            id="Projects-schema"
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdProject) }}
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdProjects) }}
           />
       <Head>
         <title>Projects - Sourav Das | Front-End Developer</title>

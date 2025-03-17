@@ -65,7 +65,7 @@ const Contact: React.FC = () => {
   return (
     <>
     <Script
-        id="website-schema"
+        id="Contact-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdContact) }}
       />

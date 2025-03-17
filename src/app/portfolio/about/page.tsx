@@ -44,7 +44,7 @@ const About: React.FC = () => {
     <>
    
        <Script
-        id="website-schema"
+        id="About-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdAbout) }}
       />

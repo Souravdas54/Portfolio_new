@@ -33,7 +33,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Script
-        id="website-schema"
+        id="Home-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHome) }}
       />
