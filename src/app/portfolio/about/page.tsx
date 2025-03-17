@@ -5,7 +5,7 @@ import { Box, Typography, Grid, Avatar, Chip, Container } from "@mui/material";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, } from "react-icons/fa";
 import { SiRedux, SiNextdotjs, SiTypescript, SiMui } from "react-icons/si";
 import Head from 'next/head';
-// import SEOpage from "@/app/component/SEOpage";
+
 
 import { WebPage, WithContext } from "schema-dts";
 import Script from "next/script";
@@ -55,11 +55,7 @@ const About: React.FC = () => {
 
   return (
     <>
-     {/* <SEOpage 
-     title="Portfolio"
-     description="Learn more about Sourav Das, a passionate Front-End Developer skilled in React.js, Next.js, and modern web technologies."
-     schemaData={aboutSchema}
-       /> */}
+   
        <Script
         id="website-schema"
         type="application/ld+json"
