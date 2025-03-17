@@ -4,17 +4,32 @@ import React, { useState } from "react";
 import { Box, Typography, TextField, Button, Grid, } from "@mui/material";
 import Head from "next/head";
 
+import { WebPage, WithContext } from "schema-dts";
+import Script from "next/script";
 
+
+const jsonLdContact: WithContext<WebPage> = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Sourav Das Portfolio",
+  url: "https://sdportfolio.com",
+  description:
+    "Explore the portfolio of Sourav Das, a Front-end Developer skilled in React.js, Next.js, and Material UI.",
+  publisher: {
+    "@type": "Person",
+    name: "Sourav Das",
+  },
+};
 
 const Contact: React.FC = () => {
-  const contactSchema = {
-    "@context": "https://schema.org",
-    "@type": "ContactPoint",
-    "telephone": "+91 12365 47890",
-    "contactType": "Customer Service",
-    "areaServed": "IN",
-    "availableLanguage": "English"
-  };
+  // const contactSchema = {
+  //   "@context": "https://schema.org",
+  //   "@type": "ContactPoint",
+  //   "telephone": "+91 12365 47890",
+  //   "contactType": "Customer Service",
+  //   "areaServed": "IN",
+  //   "availableLanguage": "English"
+  // };
 
 
   const [formData, setFormData] = useState({
@@ -58,6 +73,11 @@ const Contact: React.FC = () => {
 
   return (
     <>
+    <Script
+        id="website-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdContact) }}
+      />
       <Head>
       <title>Contact - Sourav Das | Front-End Developer</title>
         <meta charSet="utf-8" />
@@ -65,36 +85,36 @@ const Contact: React.FC = () => {
         <meta name="description" content="Get in touch with Sourav Das. Contact for web development projects, collaboration, and queries." />
 
         {/* Open Graph (OG) - For social sharing */}
-        <meta property="og:type" content="website" />
+        {/* <meta property="og:type" content="website" />
         <meta property="og:title" content="Contact - Sourav Das | Front-End Developer" />
         <meta property="og:description" content="Contact Sourav Das for web development services, project collaborations, or technical inquiries." />
         <meta property="og:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
-        <meta property="og:url" content="https://portfolio-new-five-eosin.vercel.app/" />
+        <meta property="og:url" content="https://portfolio-new-five-eosin.vercel.app/" /> */}
 
         {/* Twitter Cards */}
-        <meta name="twitter:card" content="summary_large_image" />
+        {/* <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="portfolio-new-five-eosin.vercel.app" />
         <meta property="twitter:url" content="https://portfolio-new-five-eosin.vercel.app/" />
         <meta name="twitter:title" content="Sourav Das - Front-End Developer Portfolio" />
         <meta name="twitter:description" content="Explore Sourav Das' web development projects, featuring React.js, Next.js, and JavaScript skills." />
-        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/1741623665154.jpg" />
+        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/1741623665154.jpg" /> */}
 
 
         {/* Local SEO - For business visibility */}
-        <meta name="geo.region" content="IN-WB" />
+        {/* <meta name="geo.region" content="IN-WB" />
         <meta name="geo.placename" content="Kolkata, West Bengal, India" />
         <meta name="geo.position" content="22.5726;88.3639" />
-        <meta name="ICBM" content="22.5726, 88.3639" />
+        <meta name="ICBM" content="22.5726, 88.3639" /> */}
 
         {/* Additional SEO Improvements */}
-        <meta name="robots" content="index, follow" />
+        {/* <meta name="robots" content="index, follow" />
         <meta name="author" content="Sourav Das" />
-        <link rel="canonical" href="https://portfolio-new-five-eosin.vercel.app/" />
+        <link rel="canonical" href="https://portfolio-new-five-eosin.vercel.app/" /> */}
 
-        <script
+        {/* <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
-        />
+        /> */}
       </Head>
 
 
@@ -153,10 +173,10 @@ const Contact: React.FC = () => {
 
                 <Button type="submit" variant="contained" color="primary"
                   sx={{
-                    py: { xs: 1, sm: 1.2, md: 1.5 },  // Padding for height control
-                    px: { xs: 3, sm: 4, md: 5 },      // Padding for width control
-                    fontSize: { xs: "0.8rem", sm: "1rem", md: "1.1rem" }, // Font size adjustment
-                    width: { xs: "100%", sm: "auto", } // Full width on small screens, auto on larger screens
+                    py: { xs: 1, sm: 1.2, md: 1.5 }, 
+                    px: { xs: 3, sm: 4, md: 5 },     
+                    fontSize: { xs: "0.8rem", sm: "1rem", md: "1.1rem" }, 
+                    width: { xs: "100%", sm: "auto", } 
                   }}>
                   Send Message
                 </Button>

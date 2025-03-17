@@ -8,61 +8,88 @@ import Projects from "./project/page";
 import Contact from "./contact/page";
 import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
 import Head from "next/head";
+import Script from "next/script";
+import { WebPage, WithContext } from "schema-dts";
+
+
+const jsonLdHome: WithContext<WebPage> = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Sourav Das Portfolio",
+  url: "https://sdportfolio.com",
+  description:
+    "Explore the portfolio of Sourav Das, a Front-end Developer skilled in React.js, Next.js, and Material UI.",
+  publisher: {
+    "@type": "Person",
+    name: "Sourav Das",
+  },
+};
+
 
 const Home: React.FC = () => {
 
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Sourav Das",
-    "jobTitle": "Front-end Developer",
-    "image": "/image/1741623665154.jpg",
-    "url": "https://sdportfolio.com",
-    "sameAs": [
-      "https://www.linkedin.com/in/yourprofile",
-      "https://github.com/yourgithub",
-      "https://twitter.com/yourtwitter"
-    ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Webskitters Academy"
-    },
-    "knowsAbout": ["JavaScript", "React", "Next.js", "TypeScript", "MUI"],
-    "description": "I'm a Front-End Developer specializing in building responsive and engaging web applications."
-  };
+  // const schemaData = {
+  //   "@context": "https://schema.org",
+  //   "@type": "Person",
+  //   "name": "Sourav Das",
+  //   "jobTitle": "Front-end Developer",
+  //   "image": ["https://sdportfolio.com/image/1741623665154.jpg"],
+  //   "url": "https://sdportfolio.com",
+  //   "sameAs": [
+  //     "https://www.linkedin.com/in/sourav-das",
+  //     "https://github.com/sourav-das",
+  //     "https://twitter.com/sourav_das"
+  //   ],
+  //   "worksFor": {
+  //     "@type": "Organization",
+  //     "name": "Webskitters Academy",
+  //     "url": "https://www.webskittersacademy.in/"
+  //   },
+  //   "knowsAbout": ["JavaScript", "React", "Next.js", "TypeScript", "MUI"],
+  //   "description": "I'm a passionate Front-End Developer specializing in building fast, responsive, and engaging web applications using modern technologies like React, Next.js, and TypeScript."
+  // };
+
 
   return (
     <>
+      <Script
+        id="website-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHome) }}
+      />
+
       <Head>
-        <title>Sourav Das - Front-End Developer</title>
+        <title>Portfolio</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Portfolio of Sourav Das showcasing web development skills and projects using React.js, Next.js, and JavaScript." />
 
         {/* Open Graph (OG) - For social sharing */}
-        <meta property="og:type" content="website" />
+        {/* <meta property="og:type" content="website" />
         <meta property="og:title" content="Sourav Das - Frontend Developer Portfolio" />
         <meta property="og:description" content="Explore Sourav Das' web development projects, featuring React.js, Next.js, and JavaScript skills" />
         <meta property="og:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
-        <meta property="og:url" content="https://portfolio-new-five-eosin.vercel.app/" />
+        <meta property="og:url" content="https://portfolio-new-five-eosin.vercel.app/" /> */}
         {/* <meta property="og:url" content="https://sdportfolio.com" /> */}
 
         {/* Twitter Cards */}
-        <meta name="twitter:card" content="summary_large_image" />
+        {/* <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="portfolio-new-five-eosin.vercel.app" />
         <meta property="twitter:url" content="https://portfolio-new-five-eosin.vercel.app/" />
         <meta name="twitter:title" content="Sourav Das - Front-End Developer Portfolio" />
         <meta name="twitter:description" content="Explore Sourav Das' web development projects, featuring React.js, Next.js, and JavaScript skills." />
-        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/1741623665154.jpg" />
+        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/1741623665154.jpg" /> */}
 
         {/* Additional SEO Improvements */}
-        <meta name="robots" content="index, follow" />
+        {/* <meta name="robots" content="index, follow" />
         <meta name="author" content="Sourav Das" />
-        <link rel="canonical" href="https://portfolio-new-five-eosin.vercel.app/" />
-        <script
+        <link rel="canonical" href="https://portfolio-new-five-eosin.vercel.app/" /> */}
+
+        {/* <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-        />
+        /> */}
+
       </Head>
 
       <Box>
@@ -176,19 +203,20 @@ const Home: React.FC = () => {
               <Grid
                 item
                 xs={12}
-                md={6}
+                md={5}
                 display="flex"
                 justifyContent="center"
                 sx={{ position: "relative", width: "100%", height: "auto" }}
               >
                 <Box sx={{
 
-                  // backgroundImage: "url('/image/6402688_3274408.jpg')",
-                  // backgroundSize:'cover',
-                  // backgroundPosition:"center",
-                  // width: "450px",
-                  // height: "100px",
-                  // position: "relative",
+                  // backgroundImage: "url('/image/255691291_2b6e5d83-58e5-4d74-99cd-eff31ed9c09b.jpg')",
+                  // backgroundSize: 'cover',
+                  // backgroundPosition: "center",
+                  // width: "330px",
+                  // height: "330px",
+                  position: "relative",
+
 
                 }}>
                   {/* Avatar */}
@@ -196,13 +224,12 @@ const Home: React.FC = () => {
                     src="/image/1741623665154.jpg"
                     alt="Sourav"
                     sx={{
-                      width: { xs: 150, sm: 180, md: 220, lg: 350, xl: 280 },
-                      height: { xs: 150, sm: 180, md: 220, lg: 350, xl: 280 },
+                      width: { xs: 200, sm: 230, md: 250, lg: 350, xl: 280 },
+                      height: { xs: 200, sm: 230, md: 250, lg: 350, xl: 280 },
                       boxShadow: 3,
                       position: "relative",
-                      // borderRadius: "50%",
-                      // ml:15,
-                      // mt:15,
+                      // ml: 4.5,
+                      // mt: 4.5,
 
                     }}
                   />

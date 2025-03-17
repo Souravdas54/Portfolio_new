@@ -5,7 +5,24 @@ import { Box, Typography, Grid, Avatar, Chip, Container } from "@mui/material";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, } from "react-icons/fa";
 import { SiRedux, SiNextdotjs, SiTypescript, SiMui } from "react-icons/si";
 import Head from 'next/head';
+// import SEOpage from "@/app/component/SEOpage";
 
+import { WebPage, WithContext } from "schema-dts";
+import Script from "next/script";
+
+
+const jsonLdAbout: WithContext<WebPage> = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Sourav Das Portfolio",
+  url: "https://sdportfolio.com",
+  description:
+    "Explore the portfolio of Sourav Das, a Front-end Developer skilled in React.js, Next.js, and Material UI.",
+  publisher: {
+    "@type": "Person",
+    name: "Sourav Das",
+  },
+};
 
 const skills = [
   { name: "HTML", icon: <FaHtml5 color="#E34F26" size={24} /> },
@@ -21,54 +38,49 @@ const skills = [
 
 
 const About: React.FC = () => {
-  const aboutSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Sourav Das",
-    "jobTitle": "Front-End Developer",
-    "description": "I'm a passionate Front-End Developer specializing in building interactive and user-friendly web applications.",
-    "url": "https://your-portfolio.com/about",
-    "image": "/image/1741623665154.jpg",
-    "sameAs": [
-      "https://www.linkedin.com/in/yourprofile",
-      "https://github.com/yourgithub",
-      "https://twitter.com/yourtwitter"
-    ]
-  };
+  // const aboutSchema = {
+  //   "@context": "https://schema.org",
+  //   "@type": "Person",
+  //   "name": "Sourav Das",
+  //   "jobTitle": "Front-End Developer",
+  //   "description": "I'm a passionate Front-End Developer specializing in building interactive and user-friendly web applications.",
+  //   "url": "https://your-portfolio.com/about",
+  //   "image": "/image/1741623665154.jpg",
+  //   "sameAs": [
+  //     "https://www.linkedin.com/in/yourprofile",
+  //     "https://github.com/yourgithub",
+  //     "https://twitter.com/yourtwitter"
+  //   ]
+  // };
 
   return (
     <>
+     {/* <SEOpage 
+     title="Portfolio"
+     description="Learn more about Sourav Das, a passionate Front-End Developer skilled in React.js, Next.js, and modern web technologies."
+     schemaData={aboutSchema}
+       /> */}
+       <Script
+        id="website-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdAbout) }}
+      />
       <Head>
-        <title>About - Sourav Das | Front-End Developer</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Learn more about Sourav Das, a Front-End Developer with expertise in JavaScript, React, and Next.js." />
-
-        {/* Open Graph (OG) - For social sharing */}
-        <meta property="og:type" content="profile" />
-        <meta property="og:title" content="About - Sourav Das | Front-End Developer" />
-        <meta property="og:description" content="Explore Sourav Das's journey as a Front-End Developer, specializing in React.js, Next.js, and JavaScript." />
-        <meta property="og:image" content="https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png" />
-        <meta property="og:url" content="https://portfolio-new-five-eosin.vercel.app/" />
-
-        {/* Twitter Cards */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="portfolio-new-five-eosin.vercel.app" />
-        <meta property="twitter:url" content="https://portfolio-new-five-eosin.vercel.app/" />
-        <meta name="twitter:title" content="Sourav Das - Front-End Developer Portfolio" />
-        <meta name="twitter:description" content="Explore Sourav Das' web development projects, featuring React.js, Next.js, and JavaScript skills." />
-        <meta name="twitter:image" content="https://portfolio-new-five-eosin.vercel.app/image/1741623665154.jpg" />
-
+      
 
         {/* Additional SEO Improvements */}
-        <meta name="robots" content="index, follow" />
+        {/* <meta name="robots" content="index, follow" />
         <meta name="author" content="Sourav Das" />
-        <link rel="canonical" href="https://portfolio-new-five-eosin.vercel.app/" />
-
-        <script
+        <link rel="canonical" href="https://portfolio-new-five-eosin.vercel.app/" /> */}
+        <meta
+          name="description"
+          content="Learn more about Sourav Das, a passionate Front-End Developer skilled in React.js, Next.js, and modern web technologies."
+        />
+        {/* <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
-        />
+        /> */}
+
       </Head>
 
 
