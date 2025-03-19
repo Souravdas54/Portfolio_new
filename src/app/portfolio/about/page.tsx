@@ -58,7 +58,26 @@ const About: React.FC = () => {
       </Head>
 
 
-      <Box sx={{ backgroundColor: "rgb(255, 255, 255)", color: "black" }}>
+      <Box sx={{ 
+        // backgroundColor: "rgb(238, 15, 15)", 
+        color: "black" ,
+        backgroundImage:"url('/image/1742383363444.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed", // Parallax effect
+        position: "relative",
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          // backgroundColor: "rgba(0, 0, 0, 0.5)", // Dark overlay for better text visibility
+          zIndex: 1,
+        }
+      }}>
         <Container sx={{ py: 7, }}>
           {/* Section Title */}
           <Typography variant="h3" fontWeight="bold" textAlign="center" fontFamily={"sans-serif"} gutterBottom>

@@ -22,41 +22,41 @@ const jsonLdProjects: WithContext<WebPage> = {
 };
 
 const project = [
-  {
-    title: "Portfolio",
-    description: "A collection of stunning landscape photographs captured across the globe.",
-    image: "/ecommerce.jpg",
-    link: "https://portfolio-new-five-eosin.vercel.app/",
-  },
+  // {
+  //   title: "Portfolio",
+  //   description: "A collection of stunning landscape photographs captured across the globe.",
+  //   image: "/ecommerce.jpg",
+  //   link: "https://portfolio-new-five-eosin.vercel.app/",
+  // },
   {
     title: "Outdoor Avdenture Website",
     description: "Experience the thrill of high-altitude trekking with our guided tours.",
     image: "/image/outdoor.png",
     link: "https://outdoor-adventure-five.vercel.app/",
   },
-  {
-    title: "Portfolio",
-    description: "A collection of stunning landscape photographs captured across the globe.",
-    image: "/ecommerce.jpg",
-    link: "https://portfolio-new-five-eosin.vercel.app/",
-  },
-  {
-    title: "Portfolio",
-    description: "A collection of stunning landscape photographs captured across the globe.",
-    image: "/ecommerce.jpg",
-    link: "https://portfolio-new-five-eosin.vercel.app/",
-  }, {
-    title: "Portfolio",
-    description: "A collection of stunning landscape photographs captured across the globe.",
-    image: "/ecommerce.jpg",
-    link: "https://portfolio-new-five-eosin.vercel.app/",
-  },
-  {
-    title: "Portfolio",
-    description: "A collection of stunning landscape photographs captured across the globe.",
-    image: "/ecommerce.jpg",
-    link: "https://portfolio-new-five-eosin.vercel.app/",
-  },
+  // {
+  //   title: "Portfolio",
+  //   description: "A collection of stunning landscape photographs captured across the globe.",
+  //   image: "/ecommerce.jpg",
+  //   link: "https://portfolio-new-five-eosin.vercel.app/",
+  // },
+  // {
+  //   title: "Portfolio",
+  //   description: "A collection of stunning landscape photographs captured across the globe.",
+  //   image: "/ecommerce.jpg",
+  //   link: "https://portfolio-new-five-eosin.vercel.app/",
+  // }, {
+  //   title: "Portfolio",
+  //   description: "A collection of stunning landscape photographs captured across the globe.",
+  //   image: "/ecommerce.jpg",
+  //   link: "https://portfolio-new-five-eosin.vercel.app/",
+  // },
+  // {
+  //   title: "Portfolio",
+  //   description: "A collection of stunning landscape photographs captured across the globe.",
+  //   image: "/ecommerce.jpg",
+  //   link: "https://portfolio-new-five-eosin.vercel.app/",
+  // },
 ];
 
 const Projects: React.FC = () => {

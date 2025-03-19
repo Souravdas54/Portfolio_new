@@ -6,6 +6,7 @@ import Footer from "./footer/page";
 import { Person, WithContext } from "schema-dts";
 import Script from "next/script";
 import Head from "next/head";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,19 +18,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// SCHEMA - Website
-// const jsonLdWebsite: WithContext<WebSite> = {
-//   "@context": "https://schema.org",
-//   "@type": "WebSite",
-//   name: "Sourav Das Portfolio",
-//   url: "https://sdportfolio.com",
-//   description:
-//     "Explore the portfolio of Sourav Das, a Front-end Developer skilled in React.js, Next.js, and Material UI.",
-//   publisher: {
-//     "@type": "Person",
-//     name: "Sourav Das",
-//   },
-// };
+
 // SCHEMA - Person
 const jsonLdPerson: WithContext<Person> = {
   "@context": "https://schema.org",
@@ -113,12 +102,12 @@ const jsonLdPages = [
 
 export const metadata: Metadata = {
   title: "Portfolio",
-  description: "Explore Sourav Das' portfolio showcasing web development skills in React.js, Next.js, and JavaScript.",
+  description: "Explore Sourav Das' portfolio showcasing expertise in React.js, Next.js, and JavaScript. Discover web development projects, skills, and achievements.",
   applicationName: "Sourav Das Portfolio",
   keywords: ["Sourav Das", "Front-End Developer", "React.js", "Next.js", "JavaScript", "Portfolio",],
   openGraph: {
     title: "Portfolio",
-    description: "Explore Sourav Das' portfolio showcasing web development skills in React.js, Next.js, and JavaScript.",
+    description: "Explore Sourav Das' portfolio showcasing expertise in React.js, Next.js, and JavaScript. Discover web development projects, skills, and achievements.",
     url: "https://portfolio-new-five-eosin.vercel.app/",
     siteName: "Sourav Das Portfolio",
     images: [
@@ -134,7 +123,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Portfolio",
-    description: "Explore Sourav Das' portfolio showcasing web development skills in React.js, Next.js, and JavaScript.",
+    description: "Explore Sourav Das' portfolio showcasing expertise in React.js, Next.js, and JavaScript. Discover web development projects, skills, and achievements.",
     images: ["https://portfolio-new-five-eosin.vercel.app/image/Annotation 2025-03-16 103836.png"],
   },
   metadataBase: new URL("https://portfolio-new-five-eosin.vercel.app"),
@@ -149,10 +138,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
+      <link rel="icon" href="/favicon.ico" />
         <title>Portfolio</title>
         <meta
           name="description"
-          content="Explore Sourav Das' portfolio showcasing web development skills in React.js, Next.js, and JavaScript."
+          content="Explore Sourav Das' portfolio showcasing expertise in React.js, Next.js, and JavaScript. Discover web development projects, skills, and achievements."
         />
       </Head>
 
