@@ -7,6 +7,7 @@ import { Person, WithContext } from "schema-dts";
 import Script from "next/script";
 import Head from "next/head";
 import Image from "next/image";
+import { SanityLive } from "@/sanity/lib/live";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -160,6 +161,7 @@ export default function RootLayout({
         />
         <Header />
         {children}
+        <SanityLive/>
         <Footer />
       </body>
     </html>

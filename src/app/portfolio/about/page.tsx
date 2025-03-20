@@ -1,11 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography, Grid, Avatar, Chip, Container } from "@mui/material";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, } from "react-icons/fa";
 import { SiRedux, SiNextdotjs, SiTypescript, SiMui } from "react-icons/si";
 import Head from 'next/head';
-
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import { Image as SanityImage } from 'sanity';
 
 import { WebPage, WithContext } from "schema-dts";
 import Script from "next/script";
@@ -35,15 +37,35 @@ const skills = [
   { name: "TypeScript", icon: <SiTypescript color="#3178C6" size={24} /> }
 ];
 
-
+interface AboutDatafild {
+  title: string,
+  description: string,
+  image: SanityImage
+}
 
 const About: React.FC = () => {
- 
+  const [about, setAbout] = useState<AboutDatafild | null>(null);
+
+  useEffect(() => {
+    const datafetch = async () => {
+      const newdata = await client.fetch(
+        `*[_type == "about"][0]{
+      title,description,
+      "image":image.asset->_id
+      }`
+      );
+      console.log('New data ' + newdata);
+      setAbout(newdata);
+    }
+    datafetch()
+  }, []);
+  console.log("snity about" + about);
+
 
   return (
     <>
-   
-       <Script
+
+      <Script
         id="About-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdAbout) }}
@@ -53,15 +75,15 @@ const About: React.FC = () => {
           name="description"
           content="Learn more about Sourav Das, a passionate Front-End Developer skilled in React.js, Next.js, and modern web technologies."
         />
-       
+
 
       </Head>
 
 
-      <Box sx={{ 
+      <Box sx={{
         // backgroundColor: "rgb(238, 15, 15)", 
-        color: "black" ,
-        backgroundImage:"url('/image/1742383363444.jpg')",
+        color: "black",
+        backgroundImage: "url('/image/1742383363444.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -97,8 +119,9 @@ const About: React.FC = () => {
 
             {/* Right Side: Introduction */}
             <Grid item xs={12} md={8} >
-              <Typography variant="h5" fontWeight="bold">
-                Hi,<span style={{ color: "red" }}> I&apos;m </span> Sourav Das
+             <Typography variant="h5" fontWeight="bold">
+                {/* Hi,<span style={{ color: "red" }}> I&apos;m </span> Sourav Das */}
+                {about?.title}
               </Typography>
               <Typography variant="body1" sx={{ mt: 2, fontFamily: "sans-serif" }}>
                 I&apos;m a passionate <strong style={{ color: "red" }}>Front-End Developer</strong> specializing in building
