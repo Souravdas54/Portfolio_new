@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
-import { Box, Typography, TextField, Button, Grid, } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Typography, TextField, Button, Grid, Skeleton } from "@mui/material";
 import Head from "next/head";
+import { LocationOn, Email, Phone } from "@mui/icons-material";
 
 import { WebPage, WithContext } from "schema-dts";
 import Script from "next/script";
+import { client } from "@/sanity/lib/client";
 
 
 const jsonLdContact: WithContext<WebPage> = {
@@ -21,8 +23,32 @@ const jsonLdContact: WithContext<WebPage> = {
   },
 };
 
+interface ContactDatafild {
+  title: string,
+  name: string,
+  location:string,
+  email:string,
+  phone:string,
+
+}
+
 const Contact: React.FC = () => {
- 
+   const [contactname, setContactname] = useState<ContactDatafild | null>(null);
+    // IMAGE AND TEXT SHOW FUNCTION
+    useEffect(() => {
+      const datafetch = async () => {
+        const newdata = await client.fetch(
+          `*[_type == "user"][0]{
+        title,name,location,email,phone
+        "image":image.asset->_id
+        }`
+        );
+        // console.log('New data ' + newdata);
+        setContactname(newdata);
+      }
+      datafetch()
+    }, []);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -62,104 +88,88 @@ const Contact: React.FC = () => {
     }
   };
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const updateOnlineStatus = () => setLoading(!navigator.onLine);
+
+    updateOnlineStatus();
+    
+    window.addEventListener("online", updateOnlineStatus);
+    window.addEventListener("offline", updateOnlineStatus);
+
+    return () => {
+      window.removeEventListener("online", updateOnlineStatus);
+      window.removeEventListener("offline", updateOnlineStatus);
+    }
+  }, []);
+
   return (
     <>
-    <Script
+      <Script
         id="Contact-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdContact) }}
       />
       <Head>
-      <title>Contact - Sourav Das | Front-End Developer</title>
+        <title>Contact - Sourav Das | Front-End Developer</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Get in touch with Sourav Das. Contact for web development projects, collaboration, and queries." />
 
-       
+
       </Head>
 
 
       <Box sx={{ py: 6, px: 2, display: "flex", justifyContent: "center" }}>
         <Box sx={{ maxWidth: 800, width: "100%" }}>
           {/* Heading */}
-          <Typography variant="h4" fontWeight="bold" textAlign="center" gutterBottom>
-            Contact Me
-          </Typography>
-          <Typography variant="body1" textAlign="center" sx={{ mb: 4 }}>
-            Let s work together! Fill out the form below, and I &apos;ll get back to you as soon as possible.
-          </Typography>
-
+           {/* If No Internet - Show Skeleton */}
+          {loading ? (
+            <Skeleton variant="text" width="60%" height={40} sx={{ margin: "0 auto" }} />
+          ) : (
+            <Typography variant="h4" fontWeight="bold" textAlign="center" gutterBottom>
+              Contact Me
+            </Typography>
+          )}
+          {loading ? (
+            <Skeleton variant="text" width="80%" height={20} sx={{ margin: "0 auto", mb: 4 }} />
+          ) : (
+            <Typography variant="body1" textAlign="center" sx={{ mb: 4 }}>
+              Let's work together! Fill out the form below, and I'll get back to you as soon as possible.
+            </Typography>
+          )}
           <Grid container spacing={4}>
             {/* Contact Form */}
             <Grid item xs={12} md={6}>
-              <Box
-                component="form"
-                onSubmit={handleSubmit}
-                sx={{ display: "flex", flexDirection: "column", gap: 2 }}
-              >
-                <TextField
-                  label="Your Name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  variant="outlined"
-                  fullWidth
-                  error={errors.name}
-                  helperText={errors.name ? "Name is required" : ""}
-                />
-
-                <TextField
-                  label="Your Email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  variant="outlined"
-                  fullWidth
-                  error={errors.email}
-                  helperText={errors.email ? "Email is required" : ""}
-                />
-
-                <TextField
-                  label="Message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  variant="outlined"
-                  fullWidth
-                  multiline
-                  rows={4}
-                  error={errors.message}
-                  helperText={errors.message ? "Message is required" : ""}
-                />
-
-                <Button type="submit" variant="contained" color="primary"
-                  sx={{
-                    py: { xs: 1, sm: 1.2, md: 1.5 }, 
-                    px: { xs: 3, sm: 4, md: 5 },     
-                    fontSize: { xs: "0.8rem", sm: "1rem", md: "1.1rem" }, 
-                    width: { xs: "100%", sm: "auto", } 
-                  }}>
-                  Send Message
-                </Button>
-              </Box>
+              {loading ? (
+                <Skeleton variant="rectangular" width="100%" height={250} />
+              ) : (
+                <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                  <TextField label="Your Name" name="name" value={formData.name} onChange={handleChange} variant="outlined" fullWidth error={errors.name} helperText={errors.name ? "Name is required" : ""} />
+                  <TextField label="Your Email" name="email" value={formData.email} onChange={handleChange} variant="outlined" fullWidth error={errors.email} helperText={errors.email ? "Email is required" : ""} />
+                  <TextField label="Message" name="message" value={formData.message} onChange={handleChange} variant="outlined" fullWidth multiline rows={4} error={errors.message} helperText={errors.message ? "Message is required" : ""} />
+                  <Button type="submit" variant="contained" color="primary" sx={{ py: { xs: 1, sm: 1.2, md: 1.5 }, px: { xs: 3, sm: 4, md: 5 }, fontSize: { xs: "0.8rem", sm: "1rem", md: "1.1rem" }, width: { xs: "100%", sm: "auto" } }}>
+                    Send Message
+                  </Button>
+                </Box>
+              )}
             </Grid>
-
             {/* Contact Info */}
             <Grid item xs={12} md={6}>
-              <Box sx={{ p: 3, bgcolor: "#f5f5f5", borderRadius: 2 }}>
-                <Typography variant="h6" fontWeight="bold">
-                  Contact Info
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 2 }}>
-                  📍 Location: Kolkata, India
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
-                  📧 Email: sourav@example.com
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
-                  📞 Phone: +91 12365 47890
-                </Typography>
-              </Box>
+              {loading ? (
+                <Skeleton variant="rectangular" width="100%" height={150} />
+              ) : (
+                <Box sx={{ p: 3, bgcolor: "#f5f5f5", borderRadius: 2 }}>
+                  <Typography variant="h6" fontWeight="bold"> {contactname?.title}</Typography>
+                  <Typography variant="body2" sx={{ mt: 2, display: "flex", alignItems: "center" }}>
+                    <LocationOn sx={{ mr: 1 }} /> {contactname?.location}</Typography>
+                  <Typography variant="body2" sx={{ mt: 1, display: "flex", alignItems: "center" }}>
+                    <Email sx={{ mr: 1 }} /> {contactname?.email}</Typography>
+                  <Typography variant="body2" sx={{ mt: 1, display: "flex", alignItems: "center" }}>
+                    <Phone sx={{ mr: 1 }} /> {contactname?.phone}</Typography>
+                </Box>
+              )}
             </Grid>
           </Grid>
         </Box>

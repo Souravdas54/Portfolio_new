@@ -9,11 +9,22 @@ export default defineType({
         defineField({
             name: 'title',
             title: 'Title',
-            type: "string"
+            type: "string",
+
         }),
         defineField({
             name: 'description',
             title: 'Paragraph',
+            type: 'text'
+        }),
+        defineField({
+            name: 'skill_title',
+            title: 'Skill Tile',
+            type: 'string'
+        }),
+        defineField({
+            name: 'skills',
+            title: 'Skills',
             type: 'text'
         }),
         defineField({

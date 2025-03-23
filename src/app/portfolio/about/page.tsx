@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Grid, Avatar, Chip, Container } from "@mui/material";
+import { Box, Typography, Grid, Avatar, Chip, Container, Skeleton } from "@mui/material";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, } from "react-icons/fa";
 import { SiRedux, SiNextdotjs, SiTypescript, SiMui } from "react-icons/si";
 import Head from 'next/head';
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-import { Image as SanityImage } from 'sanity';
+// import { Image as SanityImage } from 'sanity';
 
 import { WebPage, WithContext } from "schema-dts";
 import Script from "next/script";
@@ -40,26 +40,32 @@ const skills = [
 interface AboutDatafild {
   title: string,
   description: string,
-  image: SanityImage
+  skill_title: string,
+  skills: string,
+  image: string,
 }
 
 const About: React.FC = () => {
-  const [about, setAbout] = useState<AboutDatafild | null>(null);
+  const [aboutpage, setAboutpage] = useState<AboutDatafild | null>(null);
 
   useEffect(() => {
     const datafetch = async () => {
-      const newdata = await client.fetch(
-        `*[_type == "about"][0]{
-      title,description,
+      try {
+        const newdata = await client.fetch(
+          `*[_type == "about"][0]{
+      title,description,skill_title,skills,
       "image":image.asset->_id
       }`
-      );
-      console.log('New data ' + newdata);
-      setAbout(newdata);
+        );
+        // console.log('New data ' + newdata);
+        setAboutpage(newdata);
+      } catch (error) {
+        console.error("Error fetching about page data:", error);
+      }
     }
     datafetch()
   }, []);
-  console.log("snity about" + about);
+  // console.log("snity about" + about);
 
 
   return (
@@ -102,31 +108,39 @@ const About: React.FC = () => {
       }}>
         <Container sx={{ py: 7, }}>
           {/* Section Title */}
-          <Typography variant="h3" fontWeight="bold" textAlign="center" fontFamily={"sans-serif"} gutterBottom>
+         {aboutpage ? (<Typography variant="h3" fontWeight="bold" textAlign="center" fontFamily={"sans-serif"} gutterBottom>
             About Me
-          </Typography>
+          </Typography>):(
+            <Skeleton variant="circular" width={260} height={260} />
+          )}
 
           {/* Profile & Introduction */}
           <Grid container spacing={4} alignItems="center" sx={{ mt: 2 }}>
             {/* Left Side: Profile Image */}
             <Grid item xs={12} md={4} sx={{ display: "flex", justifyContent: "center" }}>
-              <Avatar
-                src="/image/1741623665154.jpg" // Change to your actual image
+
+              {aboutpage?.image ? (<Avatar
+                src={aboutpage?.image ? urlFor(aboutpage?.image).url() : ''} // Change to your actual image
                 alt="Sourav"
                 sx={{ width: 200, height: 200, boxShadow: 3 }}
               />
+              ) : (
+                <Skeleton variant="circular" width={260} height={260} />
+              )
+              }
             </Grid>
 
             {/* Right Side: Introduction */}
             <Grid item xs={12} md={8} >
-             <Typography variant="h5" fontWeight="bold">
-                {/* Hi,<span style={{ color: "red" }}> I&apos;m </span> Sourav Das */}
-                {about?.title}
-              </Typography>
+              {aboutpage && <Typography variant="h5" fontWeight="bold" >
+
+                {aboutpage?.title.slice(0, 3)} <span style={{ color: "red" }}>{aboutpage?.title.slice(4, 7)}</span>{aboutpage?.title.slice(7, 18)}
+              </Typography>}
+
               <Typography variant="body1" sx={{ mt: 2, fontFamily: "sans-serif" }}>
-                I&apos;m a passionate <strong style={{ color: "red" }}>Front-End Developer</strong> specializing in building
-                interactive and user-friendly web applications. With a strong foundation in modern
-                web technologies, I love turning ideas into reality with clean and efficient code.
+                {aboutpage?.description}
+
+
               </Typography>
             </Grid>
           </Grid>
@@ -134,17 +148,18 @@ const About: React.FC = () => {
           {/* Skills Section */}
           <Box sx={{ mt: 5, }}>
             <Typography variant="h5" fontWeight="bold" textAlign="center">
-              Skills & Technologies
+              {aboutpage?.skill_title}
             </Typography>
             <Grid container spacing={2} justifyContent="center" sx={{ mt: 3, color: 'white' }}>
               {skills.map((skill, index) => (
                 <Grid item key={index}>
-                  {/* <Chip label={skill} sx={{ fontSize: "16px", fontWeight: "bold",color:'white' }} /> */}
+
                   <Chip
                     label={
                       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                         {skill.icon}
                         {skill.name}
+                        {/* {aboutpage?.skills} */}
                       </Box>
                     }
                     sx={{

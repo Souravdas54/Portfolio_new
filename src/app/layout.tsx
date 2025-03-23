@@ -6,7 +6,6 @@ import Footer from "./footer/page";
 import { Person, WithContext } from "schema-dts";
 import Script from "next/script";
 import Head from "next/head";
-import Image from "next/image";
 import { SanityLive } from "@/sanity/lib/live";
 
 const geistSans = Geist({
@@ -102,6 +101,27 @@ const jsonLdPages = [
 // };
 
 export const metadata: Metadata = {
+  icons: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '32x32',
+      url: '/icon/favicon-32x32.png',
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '16x16',
+      url: '/icon/favicon-16x16.png',
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '180x180',
+      url: '/icon/apple-touch-icon.png',
+    },
+
+  ],
   title: "Portfolio",
   description: "Explore Sourav Das' portfolio showcasing expertise in React.js, Next.js, and JavaScript. Discover web development projects, skills, and achievements.",
   applicationName: "Sourav Das Portfolio",
@@ -139,7 +159,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-      <link rel="icon" href="/favicon.ico" />
+        {/* <link rel="icon" href="/icon/apple-touch-icon.png" /> */}
         <title>Portfolio</title>
         <meta
           name="description"
@@ -148,7 +168,7 @@ export default function RootLayout({
       </Head>
 
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        
+
         <Script
           id="person-schema"
           type="application/ld+json"
@@ -161,7 +181,7 @@ export default function RootLayout({
         />
         <Header />
         {children}
-        <SanityLive/>
+        <SanityLive />
         <Footer />
       </body>
     </html>

@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { Box, Grid, Typography, Card, CardContent, CardMedia, Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Grid, Typography, Card, CardContent, CardMedia, Button, Skeleton } from "@mui/material";
 import Head from "next/head";
 
 import { WebPage, WithContext } from "schema-dts";
@@ -59,23 +59,40 @@ const project = [
   // },
 ];
 
+
+
 const Projects: React.FC = () => {
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const updateOnlineStatus = () => setLoading(!navigator.onLine);
+
+    updateOnlineStatus();
+
+    window.addEventListener("online", updateOnlineStatus);
+    window.addEventListener("offline", updateOnlineStatus);
+
+    return () => {
+      window.removeEventListener("online", updateOnlineStatus);
+      window.removeEventListener("offline", updateOnlineStatus);
+    }
+  }, []);
 
   return (
     <>
-    <Script
-            id="Projects-schema"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdProjects) }}
-          />
+      <Script
+        id="Projects-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdProjects) }}
+      />
       <Head>
         <title>Projects - Sourav Das | Front-End Developer</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Check out Sourav Das' web development projects, including portfolios, e-commerce sites, and adventure platforms." />
 
-       
+
       </Head>
 
 
@@ -87,24 +104,31 @@ const Projects: React.FC = () => {
 
         {/* Project Grid */}
         <Grid container spacing={4} sx={{ mt: 3, justifyContent: "center" }}>
+
           {project.map((projectitems, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card sx={{ boxShadow: 3, borderRadius: 2 }}>
-                <CardMedia component="img" height="200" image={projectitems.image} alt={projectitems.title} />
-                <CardContent>
-                  <Typography variant="h6" fontWeight="bold">
-                    {projectitems.title}
-                  </Typography>
-                  <Typography variant="body2" sx={{ mt: 1 }}>
-                    {projectitems.description}
-                  </Typography>
-                  <Button variant="contained" color="primary" sx={{ mt: 2 }} href={projectitems.link} target="_blank">
-                    View Project
-                  </Button>
-                </CardContent>
-              </Card>
+              {loading ? (
+                <Skeleton variant="rectangular" width="100%" height={250} />
+
+              ) : (
+                <Card sx={{ boxShadow: 3, borderRadius: 2 }}>
+                  <CardMedia component="img" height="200" image={projectitems.image} alt={projectitems.title} />
+                  <CardContent>
+                    <Typography variant="h6" fontWeight="bold">
+                      {projectitems.title}
+                    </Typography>
+                    <Typography variant="body2" sx={{ mt: 1 }}>
+                      {projectitems.description}
+                    </Typography>
+                    <Button variant="contained" color="primary" sx={{ mt: 2 }} href={projectitems.link} target="_blank">
+                      View Project
+                    </Button>
+                  </CardContent>
+                </Card>
+              )}
             </Grid>
           ))}
+
         </Grid>
       </Box>
     </>
