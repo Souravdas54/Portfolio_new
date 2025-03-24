@@ -7,6 +7,7 @@ import { LocationOn, Email, Phone } from "@mui/icons-material";
 
 import { WebPage, WithContext } from "schema-dts";
 import Script from "next/script";
+
 import { client } from "@/sanity/lib/client";
 
 
@@ -25,29 +26,32 @@ const jsonLdContact: WithContext<WebPage> = {
 
 interface ContactDatafild {
   title: string,
-  name: string,
-  location:string,
-  email:string,
-  phone:string,
+  location: string,
+  email: string,
+  phone: string,
 
 }
 
 const Contact: React.FC = () => {
-   const [contactname, setContactname] = useState<ContactDatafild | null>(null);
-    // IMAGE AND TEXT SHOW FUNCTION
-    useEffect(() => {
-      const datafetch = async () => {
+  const [contactname, setContactname] = useState<ContactDatafild | null>(null);
+  // IMAGE AND TEXT SHOW FUNCTION
+  useEffect(() => {
+    const datafetch = async () => {
+      try {
         const newdata = await client.fetch(
-          `*[_type == "user"][0]{
-        title,name,location,email,phone
+          `*[_type == "contact"][0]{
+        title,name,location,email,phone,
         "image":image.asset->_id
         }`
         );
         // console.log('New data ' + newdata);
         setContactname(newdata);
+      } catch (error) {
+        console.error("Error fetching about page data:", error);
       }
-      datafetch()
-    }, []);
+    }
+    datafetch()
+  }, []);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -94,7 +98,7 @@ const Contact: React.FC = () => {
     const updateOnlineStatus = () => setLoading(!navigator.onLine);
 
     updateOnlineStatus();
-    
+
     window.addEventListener("online", updateOnlineStatus);
     window.addEventListener("offline", updateOnlineStatus);
 
@@ -124,15 +128,15 @@ const Contact: React.FC = () => {
       <Box sx={{ py: 6, px: 2, display: "flex", justifyContent: "center" }}>
         <Box sx={{ maxWidth: 800, width: "100%" }}>
           {/* Heading */}
-           {/* If No Internet - Show Skeleton */}
-          {loading ? (
+          {/* If No Internet - Show Skeleton */}
+          {contactname && loading ? (
             <Skeleton variant="text" width="60%" height={40} sx={{ margin: "0 auto" }} />
           ) : (
             <Typography variant="h4" fontWeight="bold" textAlign="center" gutterBottom>
               Contact Me
             </Typography>
           )}
-          {loading ? (
+          {contactname && loading ? (
             <Skeleton variant="text" width="80%" height={20} sx={{ margin: "0 auto", mb: 4 }} />
           ) : (
             <Typography variant="body1" textAlign="center" sx={{ mb: 4 }}>
@@ -142,7 +146,7 @@ const Contact: React.FC = () => {
           <Grid container spacing={4}>
             {/* Contact Form */}
             <Grid item xs={12} md={6}>
-              {loading ? (
+              {contactname && loading ? (
                 <Skeleton variant="rectangular" width="100%" height={250} />
               ) : (
                 <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
@@ -157,15 +161,18 @@ const Contact: React.FC = () => {
             </Grid>
             {/* Contact Info */}
             <Grid item xs={12} md={6}>
-              {loading ? (
+              {contactname && loading ? (
                 <Skeleton variant="rectangular" width="100%" height={150} />
               ) : (
                 <Box sx={{ p: 3, bgcolor: "#f5f5f5", borderRadius: 2 }}>
                   <Typography variant="h6" fontWeight="bold"> {contactname?.title}</Typography>
+
                   <Typography variant="body2" sx={{ mt: 2, display: "flex", alignItems: "center" }}>
                     <LocationOn sx={{ mr: 1 }} /> {contactname?.location}</Typography>
+
                   <Typography variant="body2" sx={{ mt: 1, display: "flex", alignItems: "center" }}>
                     <Email sx={{ mr: 1 }} /> {contactname?.email}</Typography>
+
                   <Typography variant="body2" sx={{ mt: 1, display: "flex", alignItems: "center" }}>
                     <Phone sx={{ mr: 1 }} /> {contactname?.phone}</Typography>
                 </Box>

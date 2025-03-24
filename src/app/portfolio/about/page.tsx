@@ -108,9 +108,9 @@ const About: React.FC = () => {
       }}>
         <Container sx={{ py: 7, }}>
           {/* Section Title */}
-         {aboutpage ? (<Typography variant="h3" fontWeight="bold" textAlign="center" fontFamily={"sans-serif"} gutterBottom>
+          {aboutpage ? (<Typography variant="h3" fontWeight="bold" textAlign="center" fontFamily={"sans-serif"} gutterBottom>
             About Me
-          </Typography>):(
+          </Typography>) : (
             <Skeleton variant="circular" width={260} height={260} />
           )}
 
@@ -122,7 +122,11 @@ const About: React.FC = () => {
               {aboutpage?.image ? (<Avatar
                 src={aboutpage?.image ? urlFor(aboutpage?.image).url() : ''} // Change to your actual image
                 alt="Sourav"
-                sx={{ width: 200, height: 200, boxShadow: 3 }}
+                sx={{
+                  width: 230, height: 230, boxShadow: 3, 
+                  border: "8px solid white",
+                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.8)",
+                }}
               />
               ) : (
                 <Skeleton variant="circular" width={260} height={260} />
