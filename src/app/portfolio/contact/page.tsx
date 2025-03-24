@@ -26,6 +26,8 @@ const jsonLdContact: WithContext<WebPage> = {
 
 interface ContactDatafild {
   title: string,
+  description: string,
+  title_info: string,
   location: string,
   email: string,
   phone: string,
@@ -40,7 +42,7 @@ const Contact: React.FC = () => {
       try {
         const newdata = await client.fetch(
           `*[_type == "contact"][0]{
-        title,name,location,email,phone,
+        title,description,title_info,location,email,phone,
         "image":image.asset->_id
         }`
         );
@@ -133,14 +135,14 @@ const Contact: React.FC = () => {
             <Skeleton variant="text" width="60%" height={40} sx={{ margin: "0 auto" }} />
           ) : (
             <Typography variant="h4" fontWeight="bold" textAlign="center" gutterBottom>
-              Contact Me
+              {contactname?.title}
             </Typography>
           )}
           {contactname && loading ? (
             <Skeleton variant="text" width="80%" height={20} sx={{ margin: "0 auto", mb: 4 }} />
           ) : (
             <Typography variant="body1" textAlign="center" sx={{ mb: 4 }}>
-              Let's work together! Fill out the form below, and I'll get back to you as soon as possible.
+              {contactname?.description}
             </Typography>
           )}
           <Grid container spacing={4}>
@@ -165,7 +167,7 @@ const Contact: React.FC = () => {
                 <Skeleton variant="rectangular" width="100%" height={150} />
               ) : (
                 <Box sx={{ p: 3, bgcolor: "#f5f5f5", borderRadius: 2 }}>
-                  <Typography variant="h6" fontWeight="bold"> {contactname?.title}</Typography>
+                  <Typography variant="h6" fontWeight="bold"> {contactname?.title_info}</Typography>
 
                   <Typography variant="body2" sx={{ mt: 2, display: "flex", alignItems: "center" }}>
                     <LocationOn sx={{ mr: 1 }} /> {contactname?.location}</Typography>
