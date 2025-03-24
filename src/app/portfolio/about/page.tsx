@@ -123,7 +123,7 @@ const About: React.FC = () => {
                 src={aboutpage?.image ? urlFor(aboutpage?.image).url() : ''} // Change to your actual image
                 alt="Sourav"
                 sx={{
-                  width: 230, height: 230, boxShadow: 3, 
+                  width: 230, height: 230,
                   border: "8px solid white",
                   boxShadow: "0 4px 15px rgba(0, 0, 0, 0.8)",
                 }}
