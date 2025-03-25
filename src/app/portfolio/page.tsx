@@ -158,13 +158,14 @@ const Home: React.FC = () => {
             {username && loading ? (<Typography
               variant="h4"
               sx={{
-                mt: 2, display: 'flex', color: "black", fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
+                // display:'flex',
+                mt: 2, color: "black", fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" ,xl:"4rem"},
               }}>
 
-              {/* {username?.title.slice(0, 3)} <span style={{ color: 'red' }}>{username?.title.slice(4, 7)}</span> */}
-              {username?.title.split(/(I'm)/).map((textsmall, index) =>
+              {username?.title.slice(0, 3)} <span style={{ color: 'red' }}>{username?.title.slice(4, 7)}</span>
+              {/* {username?.title.split(/(I'm)/).map((textsmall, index) =>
                 textsmall === "I'm" ? <p key={index} style={{ color: 'red' }}> I&apos;m </p> : textsmall
-              )}
+              )} */}
             </Typography>
             ) : (
               <Skeleton variant="text" width={180} height={70} />
@@ -178,7 +179,9 @@ const Home: React.FC = () => {
                 fontWeight="bold"
                 color="black"
                 sx={{
-                  fontSize: { xs: "2rem", sm: "2.5rem", md: "3.5rem", lg: "4rem" },
+                  fontSize: { xs: "2rem", sm: "2.5rem", md: "3.5rem", lg: "4rem",xl:"5rem" },
+                  
+
                 }}>
                 {username?.name}
               </Typography>
@@ -192,7 +195,7 @@ const Home: React.FC = () => {
               sx={{
                 mt: 2,
                 color: "black",
-                fontSize: { xs: "1rem", sm: "0.75rem", md: "1rem", lg: "1.1rem" },
+                fontSize: { xs: "1rem", sm: "1rem", md: "1rem", lg: "1.1rem",xl:"1.5rem" },
                 textAlign: 'justify',
               }}
             >
