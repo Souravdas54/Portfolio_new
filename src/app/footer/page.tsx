@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
                             <IconButton href="https://in.linkedin.com/" target="_blank">
                                 <FaLinkedin size={30} color="white" />
                             </IconButton>
-                            <IconButton href="https://github.com/your-username" target="_blank">
+                            <IconButton href="https://github.com/dashboard" target="_blank">
                                 <FaGithub size={30} color="white" />
                             </IconButton>
                             <IconButton href="https://x.com/?lang=en-in" target="_blank">

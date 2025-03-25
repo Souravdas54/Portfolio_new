@@ -98,10 +98,15 @@ const Projects: React.FC = () => {
 
       <Box sx={{ py: 6, px: 2, backgroundColor: "rgb(255, 255, 255)", color: "black" }}> {/* Added padding for spacing */}
         {/* Heading */}
-        <Typography variant="h4" fontWeight="bold" textAlign="center" color="black" gutterBottom>
-          My Projects
-        </Typography>
+        {loading ? (
+          <Skeleton variant="rectangular" width="20%" height={50} sx={{margin:"0 auto"}} />
+          
 
+        ) : (
+          <Typography variant="h4" fontWeight="bold" textAlign="center" color="black" gutterBottom>
+            My Projects
+          </Typography>
+        )}
         {/* Project Grid */}
         <Grid container spacing={4} sx={{ mt: 3, justifyContent: "center" }}>
 

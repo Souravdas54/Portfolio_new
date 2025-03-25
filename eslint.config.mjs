@@ -13,14 +13,19 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends(
+    "next/core-web-vitals",
+    "next/typescript",
+    "prettier", // Add Prettier at the end to override conflicting rules.
+  ),
   {
     plugins: {
-      "react": eslintPluginReact,
+      react: eslintPluginReact,
       "react-hooks": eslintPluginReactHooks,
-      "import": eslintPluginImport,
+      import: eslintPluginImport,
     },
     rules: {
+     
       // React-specific rules
       "react/react-in-jsx-scope": "off", // Next.js doesn't require React import
       "react/jsx-uses-react": "off", // Not needed for Next.js 15+
@@ -35,13 +40,28 @@ const eslintConfig = [
       "@typescript-eslint/no-explicit-any": "warn", // Encourages better typing
 
       // Import Plugin Rules (Added)
-      "import/no-unresolved": "error",   // Ensures imported modules are correctly resolved
-      "import/order": ["warn", {         // Organizes imports alphabetically
-        "alphabetize": { "order": "asc" }
-      }],
-    },
+      "import/no-unresolved": "error", // Ensures imported modules are correctly resolved
+      "import/order": [
+        "warn",
+        {
+          // Organizes imports alphabetically
+          alphabetize: { order: "asc" },
+        },
+      ],
 
-  }
+      // Prettier Integration (Disables conflicting ESLint rules)
+      "prettier/prettier": "warn",
+
+       // ✅ Custom Formatting Rules
+       "semi": ["error", "never"], // No semicolons
+       "quotes": ["error", "single"], // Use single quotes
+       "indent": ["error", 2], // 2-space indentation
+       "comma-dangle": ["error", "never"], // No trailing commas
+       "space-before-function-paren": ["error", "always"], // Space before function parentheses
+       "no-multiple-empty-lines": ["error", { "max": 1 }], // Limit empty lines
+       "object-curly-spacing": ["error", "always"] // Space inside curly braces
+    },
+  },
 ];
 
 export default eslintConfig;

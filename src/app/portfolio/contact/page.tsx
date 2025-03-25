@@ -152,6 +152,7 @@ const Contact: React.FC = () => {
                 <Skeleton variant="rectangular" width="100%" height={250} />
               ) : (
                 <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+
                   <TextField label="Your Name" name="name" value={formData.name} onChange={handleChange} variant="outlined" fullWidth error={errors.name} helperText={errors.name ? "Name is required" : ""} />
                   <TextField label="Your Email" name="email" value={formData.email} onChange={handleChange} variant="outlined" fullWidth error={errors.email} helperText={errors.email ? "Email is required" : ""} />
                   <TextField label="Message" name="message" value={formData.message} onChange={handleChange} variant="outlined" fullWidth multiline rows={4} error={errors.message} helperText={errors.message ? "Message is required" : ""} />

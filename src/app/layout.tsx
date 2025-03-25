@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
 import Header from "./header/page";
 import Footer from "./footer/page";
 import { Person, WithContext } from "schema-dts";
@@ -151,11 +152,9 @@ export const metadata: Metadata = {
   robots: "index, follow",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+
+
   return (
     <html lang="en">
       <Head>
@@ -179,6 +178,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPages) }}
         />
+
         <Header />
         {children}
         <SanityLive />
@@ -186,4 +186,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};

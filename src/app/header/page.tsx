@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { AppBar, Toolbar, Typography, IconButton, Box, Drawer, List, ListItem, ListItemButton } from "@mui/material";
+import { AppBar, Toolbar, Typography, IconButton, Box, Drawer, List, ListItem, ListItemButton, } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,6 +13,7 @@ const navLinks = [
   { name: "Contact", path: "/portfolio/contact" },
 ];
 
+
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -20,15 +21,17 @@ const Header: React.FC = () => {
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
+
   return (
     <AppBar position="sticky" sx={{ bgcolor: "rgba(0,0,0,0.9)" }}>
       <Toolbar>
         {/* Logo / Title */}
         <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: "bold" }}>
-          <Link href="/" style={{ textDecoration: "none", color: "white",fontFamily:"sans-serif", fontSize:'25px'}}>
-           SOURAV
+          <Link href="/" style={{ textDecoration: "none", color: "white", fontFamily: "sans-serif", fontSize: '25px' }}>
+            SOURAV
           </Link>
         </Typography>
+
 
         {/* Desktop Menu */}
         <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3, }}>
@@ -74,7 +77,7 @@ const Header: React.FC = () => {
             color: "rgb(225,225,225)"      // Ensure text color is white for visibility
           }
         }}>
-       
+
         <List sx={{ width: 200 }}>
           {navLinks.map((link) => (
             <ListItem key={link.path} disablePadding>

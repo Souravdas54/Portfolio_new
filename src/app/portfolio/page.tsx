@@ -55,12 +55,12 @@ const Home: React.FC = () => {
   }, []);
 
   const [loading, setLoading] = useState(true);
-  
-useEffect(() => {
+
+  useEffect(() => {
     const updateOnlineStatus = () => setLoading(navigator.onLine);
 
     updateOnlineStatus();
-    
+
     window.addEventListener("online", updateOnlineStatus);
     window.addEventListener("offline", updateOnlineStatus);
 
@@ -147,6 +147,7 @@ useEffect(() => {
           </Grid>
 
           {/* Left Side - Text Content */}
+
           <Grid
             item
             xs={12}
@@ -157,26 +158,31 @@ useEffect(() => {
             {username && loading ? (<Typography
               variant="h4"
               sx={{
-                mt: 2, color: "black", fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
+                mt: 2, display: 'flex', color: "black", fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
               }}>
 
-              {username?.title.slice(0, 3)} <span style={{ color: 'red' }}>{username?.title.slice(4, 7)}</span>
+              {/* {username?.title.slice(0, 3)} <span style={{ color: 'red' }}>{username?.title.slice(4, 7)}</span> */}
+              {username?.title.split(/(I'm)/).map((textsmall, index) =>
+                textsmall === "I'm" ? <p key={index} style={{ color: 'red' }}> I&apos;m </p> : textsmall
+              )}
             </Typography>
             ) : (
               <Skeleton variant="text" width={180} height={70} />
             )
             }
 
-            {username && loading ? (<Typography
-              variant="h2"
-              fontWeight="bold"
-              color="black"
-              sx={{
-                fontSize: { xs: "2rem", sm: "2.5rem", md: "3.5rem", lg: "4rem" },
-              }}
-            >
-              {username?.name}
-            </Typography>
+            {username && loading ? (
+
+              <Typography
+                variant="h2"
+                fontWeight="bold"
+                color="black"
+                sx={{
+                  fontSize: { xs: "2rem", sm: "2.5rem", md: "3.5rem", lg: "4rem" },
+                }}>
+                {username?.name}
+              </Typography>
+
             ) : (
               <Skeleton variant="text" width={300} height={70} />
             )}
@@ -187,11 +193,15 @@ useEffect(() => {
                 mt: 2,
                 color: "black",
                 fontSize: { xs: "1rem", sm: "0.75rem", md: "1rem", lg: "1.1rem" },
-                textAlign:'justify',
+                textAlign: 'justify',
               }}
             >
-             
-              {username?.description}
+              {/* {username?.description} */}
+              {username?.description.split(/(Front-End Developer)/).map((textpart, index) =>
+                textpart === "Front-End Developer" ?
+                  <strong key={index}>{textpart}</strong> : textpart
+
+              )}
             </Typography>
             ) : (
               <Skeleton variant="text" width={600} height={150} />
@@ -237,19 +247,19 @@ useEffect(() => {
                 <FaLinkedin color="#0077B5" />
               </IconButton>
             ) : (
-              <Skeleton variant="text" width={50} height={60} />
+              <Skeleton variant="circular" width={50} height={50} />
             )}
 
               {username && loading ? (
                 <IconButton
-                  href="https://github.com/your-username"
+                  href="https://github.com/dashboard"
                   target="_blank"
                   sx={{ "& svg": { fontSize: { xs: "1.5rem", sm: "2rem" } } }}
                 >
                   <FaGithub color="black" />
                 </IconButton>
               ) : (
-                <Skeleton variant="text" width={50} height={60} />
+                <Skeleton variant="circular" width={50} height={50} />
               )}
               {username && loading ? (
                 <IconButton
@@ -259,7 +269,7 @@ useEffect(() => {
                 >
                   <FaTwitter color="#1DA1F2" />
                 </IconButton>
-              ) : (<Skeleton variant="text" width={50} height={60} />)}
+              ) : (<Skeleton variant="circular" width={50} height={50} />)}
             </Box>
           </Grid>
         </Grid>
