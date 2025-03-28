@@ -22,12 +22,12 @@ const jsonLdProjects: WithContext<WebPage> = {
 };
 
 const project = [
-  // {
-  //   title: "Portfolio",
-  //   description: "A collection of stunning landscape photographs captured across the globe.",
-  //   image: "/ecommerce.jpg",
-  //   link: "https://portfolio-new-five-eosin.vercel.app/",
-  // },
+  {
+    title: "Todo Project",
+    description: "Todo Project – A simple and efficient task manager to add, update, and track your daily tasks.",
+    image: "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https:%2F%2Fblog.kakaocdn.net%2Fdn%2FcuOTPN%2FbtsF3Eo9di0%2F7khXejteK4DtLpPAQWmLEk%2Fimg.png",
+    link: "https://todo-new-nine.vercel.app/",
+  },
   {
     title: "Outdoor Avdenture Website",
     description: "Experience the thrill of high-altitude trekking with our guided tours.",
