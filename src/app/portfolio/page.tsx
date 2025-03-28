@@ -134,8 +134,8 @@ const Home: React.FC = () => {
               src={username?.image ? urlFor(username.image).url() : ''} // IMAGE SHOW CODE //
               alt="Sourav"
               sx={{
-                width: { xs: 180, sm: 220, md: 260, lg: 300, xl: 320 },
-                height: { xs: 180, sm: 220, md: 260, lg: 300, xl: 320 },
+                width: { xs: 200, sm: 230, md: 260, lg: 300, xl: 320 },
+                height: { xs: 200, sm: 230, md: 260, lg: 300, xl: 320 },
                 border: "8px solid white",
                 boxShadow: "0 4px 15px rgba(0, 0, 0, 0.8)",
               }}
