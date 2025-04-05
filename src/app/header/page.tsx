@@ -5,7 +5,6 @@ import { AppBar, Toolbar, Typography, IconButton, Box, Drawer, List, ListItem, L
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/portfolio/about" },
@@ -28,7 +27,7 @@ const Header: React.FC = () => {
         {/* Logo / Title */}
         <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: "bold" }}>
           <Link href="/" style={{ textDecoration: "none", color: "white", fontFamily: "sans-serif", fontSize: '25px' }}>
-            SOURAV
+            SOURAV 
           </Link>
         </Typography>
 

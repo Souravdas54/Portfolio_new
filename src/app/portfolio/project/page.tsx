@@ -6,6 +6,8 @@ import Head from "next/head";
 
 import { WebPage, WithContext } from "schema-dts";
 import Script from "next/script";
+import { urlFor } from "@/sanity/lib/image";
+import { client } from "@/sanity/lib/client";
 
 
 const jsonLdProjects: WithContext<WebPage> = {
@@ -21,47 +23,31 @@ const jsonLdProjects: WithContext<WebPage> = {
   },
 };
 
-const project = [
-  {
-    title: "Todo Project",
-    description: "Todo Project – A simple and efficient task manager to add, update, and track your daily tasks.",
-    image: "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https:%2F%2Fblog.kakaocdn.net%2Fdn%2FcuOTPN%2FbtsF3Eo9di0%2F7khXejteK4DtLpPAQWmLEk%2Fimg.png",
-    link: "https://todo-new-nine.vercel.app/",
-  },
-  {
-    title: "Outdoor Avdenture Website",
-    description: "Experience the thrill of high-altitude trekking with our guided tours.",
-    image: "/image/outdoor.png",
-    link: "https://outdoor-adventure-five.vercel.app/",
-  },
-  // {
-  //   title: "Portfolio",
-  //   description: "A collection of stunning landscape photographs captured across the globe.",
-  //   image: "/ecommerce.jpg",
-  //   link: "https://portfolio-new-five-eosin.vercel.app/",
-  // },
-  // {
-  //   title: "Portfolio",
-  //   description: "A collection of stunning landscape photographs captured across the globe.",
-  //   image: "/ecommerce.jpg",
-  //   link: "https://portfolio-new-five-eosin.vercel.app/",
-  // }, {
-  //   title: "Portfolio",
-  //   description: "A collection of stunning landscape photographs captured across the globe.",
-  //   image: "/ecommerce.jpg",
-  //   link: "https://portfolio-new-five-eosin.vercel.app/",
-  // },
-  // {
-  //   title: "Portfolio",
-  //   description: "A collection of stunning landscape photographs captured across the globe.",
-  //   image: "/ecommerce.jpg",
-  //   link: "https://portfolio-new-five-eosin.vercel.app/",
-  // },
-];
-
+interface AboutDatafild {
+  title: string,
+  description: string,
+  image: string,
+}
 
 
 const Projects: React.FC = () => {
+  const [projectname, setProjectname] = useState<AboutDatafild[]>([]);
+    // IMAGE AND TEXT SHOW FUNCTION
+    useEffect(() => {
+      const datafetch = async () => {
+        const newdata = await client.fetch(
+          `*[_type == "project"]{
+        title,description,
+        "image":image.asset->_id
+        }`
+        );
+        // console.log('New data ' + newdata);
+        setProjectname(newdata);
+      }
+      datafetch()
+    }, []);
+
+    
 
   const [loading, setLoading] = useState(true);
 
@@ -92,7 +78,6 @@ const Projects: React.FC = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Check out Sourav Das' web development projects, including portfolios, e-commerce sites, and adventure platforms." />
 
-
       </Head>
 
 
@@ -110,14 +95,14 @@ const Projects: React.FC = () => {
         {/* Project Grid */}
         <Grid container spacing={4} sx={{ mt: 3, justifyContent: "center" }}>
 
-          {project.map((projectitems, index) => (
+           {projectname.length > 0 && projectname?.map((projectitems:any, index:number) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               {loading ? (
                 <Skeleton variant="rectangular" width="100%" height={250} />
 
               ) : (
                 <Card sx={{ boxShadow: 3, borderRadius: 2 }}>
-                  <CardMedia component="img" height="200" image={projectitems.image} alt={projectitems.title} />
+                  <CardMedia component="img" height="200" image={projectitems?.image ? urlFor(projectitems?.image).url():''} alt={projectitems.title} />
                   <CardContent>
                     <Typography variant="h6" fontWeight="bold">
                       {projectitems.title}
