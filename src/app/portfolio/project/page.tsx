@@ -9,7 +9,6 @@ import Script from "next/script";
 import { urlFor } from "@/sanity/lib/image";
 import { client } from "@/sanity/lib/client";
 
-
 const jsonLdProjects: WithContext<WebPage> = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -30,31 +29,32 @@ interface AboutDatafild {
   projectlink: string,
 }
 
-
 const Projects: React.FC = () => {
   const [projectname, setProjectname] = useState<AboutDatafild[]>([]);
+  const [loading, setLoading] = useState(true);
+
   // IMAGE AND TEXT SHOW FUNCTION
   useEffect(() => {
     const datafetch = async () => {
-      const newdata = await client.fetch(
-        `*[_type == "project"]{
-        title,description,projectlink,
-        "image":image.asset->_id
-        }`
-      );
-      // console.log('New data ' + newdata);
-      setProjectname(newdata);
+      try {
+        const newdata = await client.fetch(
+          `*[_type == "project"]{
+            title,description,projectlink,
+            "image":image.asset->_id
+          }`
+        );
+        setProjectname(newdata);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
     }
     datafetch()
   }, []);
 
-
-
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const updateOnlineStatus = () => setLoading(!navigator.onLine);
-
     updateOnlineStatus();
 
     window.addEventListener("online", updateOnlineStatus);
@@ -65,6 +65,9 @@ const Projects: React.FC = () => {
       window.removeEventListener("offline", updateOnlineStatus);
     }
   }, []);
+
+  // Skeleton array for loading state
+  const skeletonItems = Array(2).fill(0);
 
   return (
     <>
@@ -78,32 +81,43 @@ const Projects: React.FC = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Check out Sourav Das' web development projects, including portfolios, e-commerce sites, and adventure platforms." />
-
       </Head>
 
-
-      <Box sx={{ py: 6, px: 2, backgroundColor: "rgb(255, 255, 255)", color: "black" }}> {/* Added padding for spacing */}
+      <Box sx={{ py: 6, px: 2, backgroundColor: "rgb(255, 255, 255)", color: "black", minHeight: 'auto' }}>
         {/* Heading */}
         {loading ? (
-          <Skeleton variant="rectangular" width="20%" height={50} sx={{ margin: "0 auto" }} />
-
-
+          <Skeleton variant="rectangular" width="20%" height={50} sx={{ margin: "0 auto", mb: 4 }} />
         ) : (
           <Typography variant="h4" fontWeight="bold" textAlign="center" color="black" gutterBottom>
             My Projects
           </Typography>
         )}
+
         {/* Project Grid */}
         <Grid container spacing={4} sx={{ mt: 3, justifyContent: "center" }}>
-
-          {projectname.length > 0 && projectname?.map((projectitems: any, index: number) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              {loading ? (
-                <Skeleton variant="rectangular" width="100%" height={250} />
-
-              ) : (
+          {loading ? (
+            skeletonItems.map((_, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card sx={{ boxShadow: 3, borderRadius: 2 }}>
-                  <CardMedia component="img" height="200" image={projectitems?.image ? urlFor(projectitems?.image).url() : ''} alt={projectitems.title} />
+                  <Skeleton variant="rectangular" height={200} />
+                  <CardContent>
+                    <Skeleton variant="text" width="60%" height={30} />
+                    <Skeleton variant="text" width="100%" height={60} sx={{ mt: 1 }} />
+                    <Skeleton variant="rectangular" width="100%" height={36} sx={{ mt: 2 }} />
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))
+          ) : (
+            projectname.map((projectitems: any, index: number) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Card sx={{ boxShadow: 3, borderRadius: 2 }}>
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image={projectitems?.image ? urlFor(projectitems?.image).url() : ''}
+                    alt={projectitems.title}
+                  />
                   <CardContent>
                     <Typography variant="h6" fontWeight="bold">
                       {projectitems.title}
@@ -116,10 +130,9 @@ const Projects: React.FC = () => {
                     </Button>
                   </CardContent>
                 </Card>
-              )}
-            </Grid>
-          ))}
-
+              </Grid>
+            ))
+          )}
         </Grid>
       </Box>
     </>
@@ -127,4 +140,3 @@ const Projects: React.FC = () => {
 };
 
 export default Projects;
-

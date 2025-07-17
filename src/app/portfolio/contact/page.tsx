@@ -10,7 +10,6 @@ import Script from "next/script";
 
 import { client } from "@/sanity/lib/client";
 
-
 const jsonLdContact: WithContext<WebPage> = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -31,28 +30,30 @@ interface ContactDatafild {
   location: string,
   email: string,
   phone: string,
-
 }
 
 const Contact: React.FC = () => {
   const [contactname, setContactname] = useState<ContactDatafild | null>(null);
+  const [loading, setLoading] = useState(true);
+
   // IMAGE AND TEXT SHOW FUNCTION
   useEffect(() => {
     const datafetch = async () => {
       try {
         const newdata = await client.fetch(
           `*[_type == "contact"][0]{
-        title,description,title_info,location,email,phone,
-        "image":image.asset->_id
-        }`
+            title,description,title_info,location,email,phone,
+            "image":image.asset->_id
+          }`
         );
-        // console.log('New data ' + newdata);
         setContactname(newdata);
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching about page data:", error);
+        console.error("Error fetching contact page data:", error);
+        setLoading(false);
       }
     }
-    datafetch()
+    datafetch();
   }, []);
 
   const [formData, setFormData] = useState({
@@ -67,14 +68,12 @@ const Contact: React.FC = () => {
     message: false,
   });
 
-  // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    setErrors({ ...errors, [name]: false }); // Clear errors when typing
+    setErrors({ ...errors, [name]: false });
   };
 
-  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -86,19 +85,15 @@ const Contact: React.FC = () => {
 
     setErrors(newErrors);
 
-    // Check if there are no errors before proceeding
     if (!newErrors.name && !newErrors.email && !newErrors.message) {
       console.log("Form Data:", formData);
       alert("Message Sent Successfully!");
-      setFormData({ name: "", email: "", message: "" }); // Clear form after submission
+      setFormData({ name: "", email: "", message: "" });
     }
   };
 
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const updateOnlineStatus = () => setLoading(!navigator.onLine);
-
     updateOnlineStatus();
 
     window.addEventListener("online", updateOnlineStatus);
@@ -122,62 +117,109 @@ const Contact: React.FC = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Get in touch with Sourav Das. Contact for web development projects, collaboration, and queries." />
-
-
       </Head>
 
-
-      <Box sx={{ py: 6, px: 2, display: "flex", justifyContent: "center" }}>
+      <Box sx={{ py: 6, px: 2, display: "flex", justifyContent: "center", minHeight: 'auto' }}>
         <Box sx={{ maxWidth: 800, width: "100%" }}>
           {/* Heading */}
-          {/* If No Internet - Show Skeleton */}
-          {contactname && loading ? (
-            <Skeleton variant="text" width="60%" height={40} sx={{ margin: "0 auto" }} />
+          {loading ? (
+            <>
+              <Skeleton variant="text" width="60%" height={60} sx={{ margin: "0 auto" }} />
+              <Skeleton variant="text" width="80%" height={30} sx={{ margin: "0 auto", mb: 4 }} />
+            </>
           ) : (
-            <Typography variant="h4" fontWeight="bold" textAlign="center" gutterBottom>
-              {contactname?.title}
-            </Typography>
+            <>
+              <Typography variant="h4" fontWeight="bold" textAlign="center" gutterBottom>
+                {contactname?.title}
+              </Typography>
+              <Typography variant="body1" textAlign="center" sx={{ mb: 4 }}>
+                {contactname?.description}
+              </Typography>
+            </>
           )}
-          {contactname && loading ? (
-            <Skeleton variant="text" width="80%" height={20} sx={{ margin: "0 auto", mb: 4 }} />
-          ) : (
-            <Typography variant="body1" textAlign="center" sx={{ mb: 4 }}>
-              {contactname?.description}
-            </Typography>
-          )}
+
           <Grid container spacing={4}>
             {/* Contact Form */}
             <Grid item xs={12} md={6}>
-              {contactname && loading ? (
-                <Skeleton variant="rectangular" width="100%" height={250} />
+              {loading ? (
+                <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                  <Skeleton variant="rectangular" width="100%" height={56} />
+                  <Skeleton variant="rectangular" width="100%" height={56} />
+                  <Skeleton variant="rectangular" width="100%" height={120} />
+                  <Skeleton variant="rectangular" width="100%" height={40} sx={{ mt: 1 }} />
+                </Box>
               ) : (
                 <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-
-                  <TextField label="Your Name" name="name" value={formData.name} onChange={handleChange} variant="outlined" fullWidth error={errors.name} helperText={errors.name ? "Name is required" : ""} />
-                  <TextField label="Your Email" name="email" value={formData.email} onChange={handleChange} variant="outlined" fullWidth error={errors.email} helperText={errors.email ? "Email is required" : ""} />
-                  <TextField label="Message" name="message" value={formData.message} onChange={handleChange} variant="outlined" fullWidth multiline rows={4} error={errors.message} helperText={errors.message ? "Message is required" : ""} />
-                  <Button type="submit" variant="contained" color="primary" sx={{ py: { xs: 1, sm: 1.2, md: 1.5 }, px: { xs: 3, sm: 4, md: 5 }, fontSize: { xs: "0.8rem", sm: "1rem", md: "1.1rem" }, width: { xs: "100%", sm: "auto" } }}>
+                  <TextField
+                    label="Your Name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    variant="outlined"
+                    fullWidth
+                    error={errors.name}
+                    helperText={errors.name ? "Name is required" : ""}
+                  />
+                  <TextField
+                    label="Your Email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    variant="outlined"
+                    fullWidth
+                    error={errors.email}
+                    helperText={errors.email ? "Email is required" : ""}
+                  />
+                  <TextField
+                    label="Message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    variant="outlined"
+                    fullWidth
+                    multiline
+                    rows={4}
+                    error={errors.message}
+                    helperText={errors.message ? "Message is required" : ""}
+                  />
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    sx={{
+                      py: { xs: 1, sm: 1.2, md: 1.5 },
+                      px: { xs: 3, sm: 4, md: 5 },
+                      fontSize: { xs: "0.8rem", sm: "1rem", md: "1.1rem" },
+                      width: { xs: "100%", sm: "auto" }
+                    }}
+                  >
                     Send Message
                   </Button>
                 </Box>
               )}
             </Grid>
+
             {/* Contact Info */}
             <Grid item xs={12} md={6}>
-              {contactname && loading ? (
-                <Skeleton variant="rectangular" width="100%" height={150} />
+              {loading ? (
+                <Box sx={{ p: 3, bgcolor: "#f5f5f5", borderRadius: 2 }}>
+                  <Skeleton variant="text" width="50%" height={40} />
+                  <Skeleton variant="text" width="80%" height={24} sx={{ mt: 2 }} />
+                  <Skeleton variant="text" width="80%" height={24} sx={{ mt: 1 }} />
+                  <Skeleton variant="text" width="80%" height={24} sx={{ mt: 1 }} />
+                </Box>
               ) : (
                 <Box sx={{ p: 3, bgcolor: "#f5f5f5", borderRadius: 2 }}>
-                  <Typography variant="h6" fontWeight="bold"> {contactname?.title_info}</Typography>
-
+                  <Typography variant="h6" fontWeight="bold">{contactname?.title_info}</Typography>
                   <Typography variant="body2" sx={{ mt: 2, display: "flex", alignItems: "center" }}>
-                    <LocationOn sx={{ mr: 1 }} /> {contactname?.location}</Typography>
-
+                    <LocationOn sx={{ mr: 1 }} /> {contactname?.location}
+                  </Typography>
                   <Typography variant="body2" sx={{ mt: 1, display: "flex", alignItems: "center" }}>
-                    <Email sx={{ mr: 1 }} /> {contactname?.email}</Typography>
-
+                    <Email sx={{ mr: 1 }} /> {contactname?.email}
+                  </Typography>
                   <Typography variant="body2" sx={{ mt: 1, display: "flex", alignItems: "center" }}>
-                    <Phone sx={{ mr: 1 }} /> {contactname?.phone}</Typography>
+                    <Phone sx={{ mr: 1 }} /> {contactname?.phone}
+                  </Typography>
                 </Box>
               )}
             </Grid>
@@ -189,3 +231,5 @@ const Contact: React.FC = () => {
 };
 
 export default Contact;
+
+
