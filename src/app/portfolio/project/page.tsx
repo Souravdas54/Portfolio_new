@@ -27,27 +27,28 @@ interface AboutDatafild {
   title: string,
   description: string,
   image: string,
+  projectlink: string,
 }
 
 
 const Projects: React.FC = () => {
   const [projectname, setProjectname] = useState<AboutDatafild[]>([]);
-    // IMAGE AND TEXT SHOW FUNCTION
-    useEffect(() => {
-      const datafetch = async () => {
-        const newdata = await client.fetch(
-          `*[_type == "project"]{
-        title,description,
+  // IMAGE AND TEXT SHOW FUNCTION
+  useEffect(() => {
+    const datafetch = async () => {
+      const newdata = await client.fetch(
+        `*[_type == "project"]{
+        title,description,projectlink,
         "image":image.asset->_id
         }`
-        );
-        // console.log('New data ' + newdata);
-        setProjectname(newdata);
-      }
-      datafetch()
-    }, []);
+      );
+      // console.log('New data ' + newdata);
+      setProjectname(newdata);
+    }
+    datafetch()
+  }, []);
 
-    
+
 
   const [loading, setLoading] = useState(true);
 
@@ -84,8 +85,8 @@ const Projects: React.FC = () => {
       <Box sx={{ py: 6, px: 2, backgroundColor: "rgb(255, 255, 255)", color: "black" }}> {/* Added padding for spacing */}
         {/* Heading */}
         {loading ? (
-          <Skeleton variant="rectangular" width="20%" height={50} sx={{margin:"0 auto"}} />
-          
+          <Skeleton variant="rectangular" width="20%" height={50} sx={{ margin: "0 auto" }} />
+
 
         ) : (
           <Typography variant="h4" fontWeight="bold" textAlign="center" color="black" gutterBottom>
@@ -95,14 +96,14 @@ const Projects: React.FC = () => {
         {/* Project Grid */}
         <Grid container spacing={4} sx={{ mt: 3, justifyContent: "center" }}>
 
-           {projectname.length > 0 && projectname?.map((projectitems:any, index:number) => (
+          {projectname.length > 0 && projectname?.map((projectitems: any, index: number) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               {loading ? (
                 <Skeleton variant="rectangular" width="100%" height={250} />
 
               ) : (
                 <Card sx={{ boxShadow: 3, borderRadius: 2 }}>
-                  <CardMedia component="img" height="200" image={projectitems?.image ? urlFor(projectitems?.image).url():''} alt={projectitems.title} />
+                  <CardMedia component="img" height="200" image={projectitems?.image ? urlFor(projectitems?.image).url() : ''} alt={projectitems.title} />
                   <CardContent>
                     <Typography variant="h6" fontWeight="bold">
                       {projectitems.title}
@@ -110,7 +111,7 @@ const Projects: React.FC = () => {
                     <Typography variant="body2" sx={{ mt: 1 }}>
                       {projectitems.description}
                     </Typography>
-                    <Button variant="contained" color="primary" sx={{ mt: 2 }} href={projectitems.link} target="_blank">
+                    <Button variant="contained" color="primary" sx={{ mt: 2 }} href={projectitems.projectlink} target="_blank">
                       View Project
                     </Button>
                   </CardContent>

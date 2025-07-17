@@ -21,8 +21,8 @@ export default defineType({
             type: 'image'
         }),
         defineField({
-            title:'Image Link',
-            name:'imagelink',
+            title:'Project Link',
+            name:'projectlink',
             type:'string',
         })
 

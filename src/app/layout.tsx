@@ -166,7 +166,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         />
       </Head>
 
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}suppressHydrationWarning >
 
         <Script
           id="person-schema"
